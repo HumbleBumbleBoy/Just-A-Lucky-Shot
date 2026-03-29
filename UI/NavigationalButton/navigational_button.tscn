@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dksn4sgev6sl0"]
+
+[ext_resource type="Script" uid="uid://jk4byqh5vme6" path="res://UI/NavigationalButton/NavigationalButton.cs" id="1_dylfr"]
+
+[node name="NavigationalButton" type="TextureButton" unique_id=351929309]
+custom_minimum_size = Vector2(300, 100)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_dylfr")
+Text = "Button!"
+Path = "/home/HumbleBumble/Documents/Godot projects/slots/Locations/Menu/main_menu.tscn"
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=517795776]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Button!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="onPressed"]
