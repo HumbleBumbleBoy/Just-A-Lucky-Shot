@@ -32,4 +32,18 @@ public partial class NavigationalButton : TextureButton
             textContainer.Text = Text;
         }
     }
+
+    private void OnMouseHover()
+    {
+        textContainer.PivotOffsetRatio = new Vector2(0.5f, 0.5f);
+        textContainer.Scale = new Vector2(1.1f, 1.1f);
+        textContainer.SelfModulate = new Color(128, 32, 0, 1);
+    }
+
+    private void OnMouseHoverExit()
+    {
+        textContainer.PivotOffsetRatio = new Vector2(1.0f, 1.0f);
+        textContainer.Scale = Vector2.One;
+        textContainer.SelfModulate = new Color(255, 255, 255, 1);
+    }
 }

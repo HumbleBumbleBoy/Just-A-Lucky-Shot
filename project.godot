@@ -32,13 +32,19 @@ project/assembly_name="Slots"
 [file_customization]
 
 folder_colors={
-"res://Components/": "blue",
+"res://Entities/": "blue",
 "res://GeneralAssets/": "yellow",
 "res://Items/": "red",
 "res://Locations/": "green",
 "res://Managers/": "gray",
+"res://Resources/": "pink",
 "res://UI/": "purple"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/custom_font="uid://cnlbnpw2mn1xx"
 
 [physics]
 

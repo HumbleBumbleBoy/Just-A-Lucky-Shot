@@ -3,10 +3,12 @@
 [node name="VolumeSlider" type="HBoxContainer" unique_id=1853665864]
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_constants/separation = 20
 
 [node name="VolumeLabel" type="RichTextLabel" parent="." unique_id=126255495]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
 text = "<BUS>"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -16,7 +18,8 @@ custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 
 [node name="PercantageLabel" type="RichTextLabel" parent="." unique_id=1162725354]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
 text = "50%"
 vertical_alignment = 1
