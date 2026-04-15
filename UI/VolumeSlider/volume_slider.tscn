@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://ym2vh784k2ju"]
 
+[ext_resource type="Script" uid="uid://bd7w24j2an8p2" path="res://UI/VolumeSlider/VolumeSlider.cs" id="1_1rlei"]
+
 [node name="VolumeSlider" type="HBoxContainer" unique_id=1853665864]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 20
+script = ExtResource("1_1rlei")
 
 [node name="VolumeLabel" type="RichTextLabel" parent="." unique_id=126255495]
 custom_minimum_size = Vector2(150, 0)

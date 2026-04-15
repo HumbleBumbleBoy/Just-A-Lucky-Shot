@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://beg42sp4wg6ss"]
+
+[ext_resource type="Script" uid="uid://dex3465k2c6cu" path="res://Entities/GernericEntity.cs" id="1_rptv8"]
+[ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="2_pd2ms"]
+[ext_resource type="PackedScene" uid="uid://ddr5l2ckmy25j" path="res://Components/HurtBoxComponent/hurt_box_component.tscn" id="3_g0715"]
+[ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="4_g0715"]
+[ext_resource type="PackedScene" uid="uid://ct5we72wnmq0u" path="res://Components/PathfindComponent/pathfind_component.tscn" id="5_kwypm"]
+[ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="6_kwypm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
+size = Vector2(32, 57)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwypm"]
+radius = 38.118237
+
+[node name="GernericEntity" type="CharacterBody2D" unique_id=1295010372]
+script = ExtResource("1_rptv8")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=927463031]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1749894332]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ltf5d")
+
+[node name="HurtBoxComponent" parent="." unique_id=329708331 instance=ExtResource("3_g0715")]
+
+[node name="HurtArea" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=1108092287]
+shape = SubResource("CircleShape2D_kwypm")
+
+[node name="PathfindComponent" parent="." unique_id=1558305364 node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("5_kwypm")]
+VelocityComponent = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." unique_id=2130177268 instance=ExtResource("4_g0715")]
+MaxSpeed = 20.0
+AccelerationCoefficient = 5.0
+
+[node name="HealthComponent" parent="." unique_id=863554523 instance=ExtResource("2_pd2ms")]
+MaxHealth = 10
+
+[node name="StateMachineComponent" parent="." unique_id=736838608 instance=ExtResource("6_kwypm")]
+
+[node name="Shoot" type="Node" parent="StateMachineComponent" unique_id=167174041]
+
+[node name="Wander" type="Node" parent="StateMachineComponent" unique_id=703419249]
+
+[node name="Hurt" type="Node" parent="StateMachineComponent" unique_id=432478470]
+
+[node name="Dead" type="Node" parent="StateMachineComponent" unique_id=2091455951]
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1510611989]

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bq4c378kgefv4"]
 
 [ext_resource type="PackedScene" uid="uid://ym2vh784k2ju" path="res://UI/VolumeSlider/volume_slider.tscn" id="1_5747j"]
-[ext_resource type="Script" uid="uid://bd7w24j2an8p2" path="res://UI/VolumeSlider/VolumeSlider.cs" id="2_8fv2p"]
 
 [node name="VolumeSliders" type="VBoxContainer" unique_id=863634445]
 offset_right = 40.0
@@ -9,20 +8,35 @@ offset_bottom = 40.0
 
 [node name="Master" parent="." unique_id=1853665864 instance=ExtResource("1_5747j")]
 layout_mode = 2
-script = ExtResource("2_8fv2p")
 BusName = "Master"
 _baseValue = 50.0
 
 [node name="Music" parent="." unique_id=248147438 instance=ExtResource("1_5747j")]
 layout_mode = 2
-script = ExtResource("2_8fv2p")
 BusName = "Music"
 BusIndex = 1
-_baseValue = 30.0
+_baseValue = 50.0
 
 [node name="SFX" parent="." unique_id=371737771 instance=ExtResource("1_5747j")]
 layout_mode = 2
-script = ExtResource("2_8fv2p")
 BusName = "SFX"
 BusIndex = 2
 _baseValue = 25.0
+
+[node name="UI" parent="." unique_id=1150621788 instance=ExtResource("1_5747j")]
+layout_mode = 2
+BusName = "UI"
+BusIndex = 3
+_baseValue = 30.0
+
+[node name="Weapons" parent="." unique_id=2037965224 instance=ExtResource("1_5747j")]
+layout_mode = 2
+BusName = "Weapons"
+BusIndex = 4
+_baseValue = 25.0
+
+[node name="Voices" parent="." unique_id=1940373521 instance=ExtResource("1_5747j")]
+layout_mode = 2
+BusName = "Voices"
+BusIndex = 5
+_baseValue = 50.0

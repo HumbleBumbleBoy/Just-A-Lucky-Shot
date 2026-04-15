@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Slots"
+config/name="Just A Lucky Shot"
 run/main_scene="uid://ct18d5iqi82w2"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 
@@ -32,6 +32,7 @@ project/assembly_name="Slots"
 [file_customization]
 
 folder_colors={
+"res://Components/": "teal",
 "res://Entities/": "blue",
 "res://GeneralAssets/": "yellow",
 "res://Items/": "red",

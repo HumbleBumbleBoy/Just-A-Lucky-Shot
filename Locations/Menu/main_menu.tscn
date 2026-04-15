@@ -55,7 +55,7 @@ offset_top = 29.23077
 offset_right = 85.15383
 offset_bottom = 131.23077
 rotation = -0.143117
-theme_override_colors/default_color = Color(0.41568628, 1, 0.24705882, 1)
+theme_override_colors/default_color = Color(0.40986258, 0.45571995, 0.47792917, 1)
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("2_5mxvd")
 theme_override_font_sizes/normal_font_size = 64
@@ -131,7 +131,8 @@ metadata/_edit_lock_ = true
 
 [node name="Play" parent="Buttons" unique_id=351929309 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
-Text = "Bring It On!"
+Text = "Play"
+Path = "/home/HumbleBumble/Documents/Godot projects/slots/Locations/Shop/shop.tscn"
 
 [node name="Settings" parent="Buttons" unique_id=1862039055 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
