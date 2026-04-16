@@ -21,6 +21,7 @@ radius = 48.052055
 
 [node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent")]
 collision_mask = 10
+floor_max_angle = 0.34906584
 script = ExtResource("1_x1y6q")
 VelocityComponent = NodePath("VelocityComponent")
 
