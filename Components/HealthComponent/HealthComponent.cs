@@ -11,10 +11,6 @@ public partial class HealthComponent : Node  // Note to self for this and all fu
     public override void _Ready()
     {
         _currentHealth = MaxHealth;
-
-        GD.Print(_currentHealth);
-        DecreaseHealth(5);
-        GD.Print(_currentHealth);
     }
 
     public void SetHealth(float amount)

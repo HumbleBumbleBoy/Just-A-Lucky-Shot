@@ -8,9 +8,9 @@ public partial class Player : CharacterBody2D, IMoveable
     public Vector2 TargetDirection;
     private bool _isJumping = false;
     private float _jumpHoldTime = 0;
-    private const float MAX_HOLD_TIME = 0.3f;
-    private const float MIN_FORCE = -500;
-    private const float MAX_FORCE = -600;
+    private const float MAX_HOLD_TIME = 0.4f;
+    private const float MIN_FORCE = -350;
+    private const float MAX_FORCE = -500;
     
     public override void _Ready()
     {
@@ -21,6 +21,10 @@ public partial class Player : CharacterBody2D, IMoveable
     public override void _PhysicsProcess(double delta)
     {
         TargetDirection = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
+
+        float leeway = 0.1f;
+        if (Mathf.Abs(TargetDirection.X) < leeway) { TargetDirection.X = 0; }
+        if (Mathf.Abs(TargetDirection.Y) < leeway) { TargetDirection.Y = 0; }
         _stateMachine._PhysicsProcess((float)delta);
     }
 
@@ -64,6 +68,7 @@ public partial class Player : CharacterBody2D, IMoveable
             Velocity += new Vector2(0, VelocityComponent.GravitationalPull * 100 * delta);
         }
         
+        GD.Print($"Velocity is: {Velocity} \n Move direction: {moveDirection}");
         MoveAndSlide();
     }
 }
