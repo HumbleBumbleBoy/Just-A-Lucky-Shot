@@ -12,4 +12,9 @@ public partial class Shoot : State
     {
         
     }
+
+    public override void _Process(double delta)
+    {
+        
+    }
 }

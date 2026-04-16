@@ -4,10 +4,10 @@
 
 [node name="Shop" type="Node2D" unique_id=1811822626]
 
-[node name="NavigationalButton" parent="." unique_id=351929309 instance=ExtResource("1_xygu1")]
+[node name="Ready" parent="." unique_id=351929309 instance=ExtResource("1_xygu1")]
 offset_left = 1368.0
 offset_top = 908.0
 offset_right = 1868.0
 offset_bottom = 1008.0
 Text = "Ready!"
-Path = "/home/HumbleBumble/Documents/Godot projects/slots/Locations/GameScene/game_scene.tscn"
+Path = "res://Locations/GameScene/game_scene.tscn"

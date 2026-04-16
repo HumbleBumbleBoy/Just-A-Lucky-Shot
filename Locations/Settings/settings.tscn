@@ -74,6 +74,7 @@ theme_override_constants/separation = 500
 [node name="NavigationalButton" parent="HBoxContainer" unique_id=351929309 instance=ExtResource("4_1cnbh")]
 layout_mode = 2
 Text = "Back"
+Path = "res://Locations/Menu/main_menu.tscn"
 metadata/_edit_lock_ = true
 
 [node name="Quit" parent="HBoxContainer" unique_id=1209523421 instance=ExtResource("4_1cnbh")]

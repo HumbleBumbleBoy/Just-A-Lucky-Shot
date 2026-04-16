@@ -1,16 +1,20 @@
 using Godot;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 public partial class HealthComponent : Node  // Note to self for this and all future components, keep them STRICT. This will just increase and decrese health PERIOD, no death managing or other effects.
 {
     [Export] public float MaxHealth;
-    [Export] public float DamageResistance;
-    [Export] public bool IsPercentageValue;
+    [Export] public float ArmorAmount;  // Flat number reduction
     public float _currentHealth;
 
     public override void _Ready()
     {
-        
+        _currentHealth = MaxHealth;
+
+        GD.Print(_currentHealth);
+        DecreaseHealth(5);
+        GD.Print(_currentHealth);
     }
 
     public void SetHealth(float amount)
@@ -20,12 +24,15 @@ public partial class HealthComponent : Node  // Note to self for this and all fu
 
     public void IncreaseHealth(float amount)
     {
+
         _currentHealth += amount;
     }
 
     public void DecreaseHealth(float amount)
     {
-        _currentHealth -= amount;
+        float finalDamage = Math.Max(amount - ArmorAmount, 1);  // Caps minimum damage dealt to 1
+        _currentHealth -= finalDamage;
+        
     }
 
     public void SetMaxHealth(float amount)

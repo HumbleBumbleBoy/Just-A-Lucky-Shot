@@ -132,12 +132,12 @@ metadata/_edit_lock_ = true
 [node name="Play" parent="Buttons" unique_id=351929309 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
 Text = "Play"
-Path = "/home/HumbleBumble/Documents/Godot projects/slots/Locations/Shop/shop.tscn"
+Path = "res://Locations/Shop/shop.tscn"
 
 [node name="Settings" parent="Buttons" unique_id=1862039055 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
 Text = "Settings"
-Path = "/home/HumbleBumble/Documents/Godot projects/slots/Locations/Settings/settings.tscn"
+Path = "res://Locations/Settings/settings.tscn"
 
 [node name="Quit" parent="Buttons" unique_id=1611194673 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
