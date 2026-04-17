@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ct18d5iqi82w2"]
 
 [ext_resource type="PackedScene" uid="uid://dksn4sgev6sl0" path="res://UI/NavigationalButton/navigational_button.tscn" id="1_p1rgi"]
+[ext_resource type="PackedScene" uid="uid://btr3gx6mct8ck" path="res://Managers/u_imanager.tscn" id="1_qhvk0"]
 [ext_resource type="Shader" uid="uid://dn46hc2i3obyt" path="res://Resources/Hover.gdshader" id="1_uk6f7"]
 [ext_resource type="FontFile" uid="uid://ulo72vsra8xq" path="res://GeneralAssets/fonts/pastelova-font/PastelovaDemo-8Mav2.ttf" id="2_5mxvd"]
 
@@ -33,6 +34,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
+
+[node name="UImanager" parent="." unique_id=1849137033 instance=ExtResource("1_qhvk0")]
+layout_mode = 1
 
 [node name="TitleCard" type="Control" parent="." unique_id=421581002]
 custom_minimum_size = Vector2(1080, 300)
@@ -131,15 +135,19 @@ metadata/_edit_lock_ = true
 
 [node name="Play" parent="Buttons" unique_id=351929309 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Settings")
 Text = "Play"
 Path = "res://Locations/Shop/shop.tscn"
 
 [node name="Settings" parent="Buttons" unique_id=1862039055 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Quit")
 Text = "Settings"
 Path = "res://Locations/Settings/settings.tscn"
 
 [node name="Quit" parent="Buttons" unique_id=1611194673 instance=ExtResource("1_p1rgi")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
 Text = "Quit"
 Path = "Quit"

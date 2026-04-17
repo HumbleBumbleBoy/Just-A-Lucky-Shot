@@ -11,11 +11,26 @@ layout_mode = 2
 BusName = "Master"
 _baseValue = 50.0
 
+[node name="VolumeLabel" parent="Master" index="0" unique_id=126255495]
+text = "Master"
+
+[node name="VolumeSlider" parent="Master" index="1" unique_id=1308877084]
+focus_neighbor_bottom = NodePath("../../Music/VolumeSlider")
+value = 50.0
+
 [node name="Music" parent="." unique_id=248147438 instance=ExtResource("1_5747j")]
 layout_mode = 2
 BusName = "Music"
 BusIndex = 1
 _baseValue = 50.0
+
+[node name="VolumeLabel" parent="Music" index="0" unique_id=126255495]
+text = "Music"
+
+[node name="VolumeSlider" parent="Music" index="1" unique_id=1308877084]
+focus_neighbor_top = NodePath("../../Master/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../SFX/VolumeSlider")
+value = 50.0
 
 [node name="SFX" parent="." unique_id=371737771 instance=ExtResource("1_5747j")]
 layout_mode = 2
@@ -23,11 +38,33 @@ BusName = "SFX"
 BusIndex = 2
 _baseValue = 25.0
 
+[node name="VolumeLabel" parent="SFX" index="0" unique_id=126255495]
+text = "SFX"
+
+[node name="VolumeSlider" parent="SFX" index="1" unique_id=1308877084]
+focus_neighbor_top = NodePath("../../Music/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../UI/VolumeSlider")
+value = 25.0
+
+[node name="PercantageLabel" parent="SFX" index="2" unique_id=1162725354]
+text = "25%"
+
 [node name="UI" parent="." unique_id=1150621788 instance=ExtResource("1_5747j")]
 layout_mode = 2
 BusName = "UI"
 BusIndex = 3
 _baseValue = 30.0
+
+[node name="VolumeLabel" parent="UI" index="0" unique_id=126255495]
+text = "UI"
+
+[node name="VolumeSlider" parent="UI" index="1" unique_id=1308877084]
+focus_neighbor_top = NodePath("../../SFX/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../Weapons/VolumeSlider")
+value = 30.0
+
+[node name="PercantageLabel" parent="UI" index="2" unique_id=1162725354]
+text = "30%"
 
 [node name="Weapons" parent="." unique_id=2037965224 instance=ExtResource("1_5747j")]
 layout_mode = 2
@@ -35,8 +72,33 @@ BusName = "Weapons"
 BusIndex = 4
 _baseValue = 25.0
 
+[node name="VolumeLabel" parent="Weapons" index="0" unique_id=126255495]
+text = "Weapons"
+
+[node name="VolumeSlider" parent="Weapons" index="1" unique_id=1308877084]
+focus_neighbor_top = NodePath("../../UI/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../Voices/VolumeSlider")
+value = 25.0
+
+[node name="PercantageLabel" parent="Weapons" index="2" unique_id=1162725354]
+text = "25%"
+
 [node name="Voices" parent="." unique_id=1940373521 instance=ExtResource("1_5747j")]
 layout_mode = 2
 BusName = "Voices"
 BusIndex = 5
 _baseValue = 50.0
+
+[node name="VolumeLabel" parent="Voices" index="0" unique_id=126255495]
+text = "Voices"
+
+[node name="VolumeSlider" parent="Voices" index="1" unique_id=1308877084]
+focus_neighbor_top = NodePath("../../Weapons/VolumeSlider")
+value = 50.0
+
+[editable path="Master"]
+[editable path="Music"]
+[editable path="SFX"]
+[editable path="UI"]
+[editable path="Weapons"]
+[editable path="Voices"]

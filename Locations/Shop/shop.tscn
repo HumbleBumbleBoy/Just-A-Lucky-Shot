@@ -1,10 +1,99 @@
 [gd_scene format=3 uid="uid://bhld0xj1fdexy"]
 
+[ext_resource type="PackedScene" uid="uid://btr3gx6mct8ck" path="res://Managers/u_imanager.tscn" id="1_0im5h"]
 [ext_resource type="PackedScene" uid="uid://dksn4sgev6sl0" path="res://UI/NavigationalButton/navigational_button.tscn" id="1_xygu1"]
 
-[node name="Shop" type="Node2D" unique_id=1811822626]
+[sub_resource type="CSharpScript" id="CSharpScript_irydg"]
+script/source = "using Godot;
+using System;
+using System.Collections.Generic;
+
+public partial class UIManager : Control
+{
+    [Export] private bool debugMode = false; // Helps troubleshoot focus issues
+    
+    public override void _Ready()
+    {
+        // Defer focus grabbing to ensure everything is fully loaded
+        CallDeferred(nameof(SetInitialFocus));
+    }
+    
+    private void SetInitialFocus()
+    {
+        Control focusTarget = FindFirstFocusableControl(this);
+        
+        if (focusTarget != null)
+        {
+            if (debugMode)
+                GD.Print($\"Setting focus to: {focusTarget.Name} ({focusTarget.GetType()})\");
+            
+            focusTarget.CallDeferred(\"grab_focus\");
+        }
+        else if (debugMode)
+        {
+            GD.Print(\"No focusable control found in this UI\");
+        }
+    }
+    
+    private Control FindFirstFocusableControl(Node node)
+    {
+        // Check if current node is a focusable control
+        if (IsFocusableControl(node))
+            return (Control)node;
+        
+        // Recursively search children
+        foreach (Node child in node.GetChildren())
+        {
+            Control found = FindFirstFocusableControl(child);
+            if (found != null)
+                return found;
+        }
+        
+        return null;
+    }
+    
+    private bool IsFocusableControl(Node node)
+    {
+        // Must be a Control node
+        if (node is not Control control)
+            return false;
+        
+        // Check if it's a type that can receive focus
+        bool isFocusableType = control is Button ||
+                               control is Slider ||
+                               control is CheckBox ||
+                               control is CheckButton ||
+                               control is OptionButton ||
+                               control is ColorPickerButton ||
+                               control is LineEdit ||
+                               control is TextEdit ||
+                               control is SpinBox ||
+                               control is Tree ||
+                               control is ItemList ||
+                               control is MenuButton;
+        
+        if (!isFocusableType)
+            return false;
+        
+        // Check if the control is actually focusable (not disabled/hidden)
+        bool canActuallyFocus = control.FocusMode != FocusModeEnum.None &&
+                                control.Visible &&
+                                control.GetRect().Size.X > 0 &&
+                                control.GetRect().Size.Y > 0;
+        
+        return canActuallyFocus;
+    }
+}"
+
+[node name="Shop" type="Control" unique_id=2003812141]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="UImanager" parent="." unique_id=1849137033 instance=ExtResource("1_0im5h")]
+layout_mode = 1
 
 [node name="Ready" parent="." unique_id=351929309 instance=ExtResource("1_xygu1")]
+layout_mode = 0
 offset_left = 1368.0
 offset_top = 908.0
 offset_right = 1868.0

@@ -6,12 +6,10 @@ public partial class Player : CharacterBody2D, IMoveable
     [Export] public VelocityComponent VelocityComponent;
     private StateMachineComponent _stateMachine;
     public Vector2 TargetDirection;
-    
-    [Export] private float _leeway = 0.1f;
-    [Export] private float _jumpHoldMaxTime = 0.5f;
-    [Export] private float _minJumpForce = -350;
-    [Export] private float _maxJumpForce = -600;
-    
+    [Export] private float _jumpHoldMaxTime;
+    [Export] private float _minJumpForce;
+    [Export] private float _maxJumpForce;
+    private float _leeway = 0.1f;
     private float _coyoteTimer = 0.2f;
     private bool _isJumping = false;
     private float _jumpHoldTimer = 0f;
@@ -20,6 +18,7 @@ public partial class Player : CharacterBody2D, IMoveable
     public override void _Ready()
     {
         _stateMachine = GetNode<StateMachineComponent>("StateMachineComponent");
+        _stateMachine.TransitionTo("PlayerFall");
     }
     
     public override void _PhysicsProcess(double delta)

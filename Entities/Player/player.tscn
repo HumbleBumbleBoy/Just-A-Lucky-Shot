@@ -24,6 +24,9 @@ collision_mask = 10
 floor_max_angle = 0.34906584
 script = ExtResource("1_x1y6q")
 VelocityComponent = NodePath("VelocityComponent")
+_jumpHoldMaxTime = 0.5
+_minJumpForce = -350.0
+_maxJumpForce = -600.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=927463031]
 texture = ExtResource("2_ap3xn")
@@ -50,12 +53,10 @@ MaxHealth = 10.0
 ArmorAmount = 5.0
 
 [node name="StateMachineComponent" parent="." unique_id=736838608 instance=ExtResource("6_r8fok")]
-initialState = NodePath("Fall")
+initialState = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachineComponent" unique_id=1801200570]
 script = ExtResource("7_owvpp")
-
-[node name="Jump" type="Node" parent="StateMachineComponent" unique_id=364504020]
 
 [node name="Fall" type="Node" parent="StateMachineComponent" unique_id=129551881]
 script = ExtResource("8_iplt1")

@@ -40,6 +40,8 @@ vertical_alignment = 1
 stream = ExtResource("2_ja0mr")
 bus = &"UI"
 
+[connection signal="focus_entered" from="." to="." method="OnMouseHover"]
+[connection signal="focus_exited" from="." to="." method="OnMouseHoverExit"]
 [connection signal="mouse_entered" from="." to="." method="OnMouseHover"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseHoverExit"]
 [connection signal="pressed" from="." to="." method="onPressed"]

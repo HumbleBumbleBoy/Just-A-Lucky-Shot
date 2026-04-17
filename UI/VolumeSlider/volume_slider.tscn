@@ -1,24 +1,27 @@
 [gd_scene format=3 uid="uid://ym2vh784k2ju"]
 
 [ext_resource type="Script" uid="uid://bd7w24j2an8p2" path="res://UI/VolumeSlider/VolumeSlider.cs" id="1_1rlei"]
+[ext_resource type="AudioStream" uid="uid://cmkubja6hpsbn" path="res://UI/NavigationalButton/SelectPlaceholder.wav" id="2_jq34s"]
 
-[node name="VolumeSlider" type="HBoxContainer" unique_id=1853665864]
+[node name="VolumeSlider" type="HBoxContainer" unique_id=1853665864 node_paths=PackedStringArray("AudioStreamPlayer")]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 20
 script = ExtResource("1_1rlei")
+AudioStreamPlayer = NodePath("AudioStreamPlayer")
 
 [node name="VolumeLabel" type="RichTextLabel" parent="." unique_id=126255495]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
-text = "<BUS>"
+text = "<Bus Name>"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="VolumeSlider" type="HSlider" parent="." unique_id=1308877084]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
+value = 50.0
 
 [node name="PercantageLabel" type="RichTextLabel" parent="." unique_id=1162725354]
 custom_minimum_size = Vector2(150, 0)
@@ -26,3 +29,7 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
 text = "50%"
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1160585479]
+stream = ExtResource("2_jq34s")
+bus = &"UI"

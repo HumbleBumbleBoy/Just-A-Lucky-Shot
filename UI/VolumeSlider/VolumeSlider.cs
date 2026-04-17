@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 
 [Tool]
 public partial class VolumeSlider : HBoxContainer
@@ -21,8 +19,8 @@ public partial class VolumeSlider : HBoxContainer
     }
 
     [Export] public int BusIndex { get; set; }
-    
     [Export] public float _baseValue { get; set; }
+    [Export] public AudioStreamPlayer AudioStreamPlayer;
 
     public override void _Ready()
     {
@@ -58,6 +56,7 @@ public partial class VolumeSlider : HBoxContainer
 
         float decibels = ConvertPercantageToDb(value);
         AudioServer.SetBusVolumeDb(BusIndex, decibels);
+        AudioStreamPlayer.Play();
     }
 
     private void UpdateVolumeLabel()
