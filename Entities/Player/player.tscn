@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="4_owvpp"]
 [ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="5_xr8lj"]
 [ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="6_r8fok"]
-[ext_resource type="Script" uid="uid://ctu5nu1m4gby3" path="res://Components/StateMachineComponent/Move/Move.cs" id="7_nhbkt"]
-[ext_resource type="Script" uid="uid://cpsf3fw0uv42f" path="res://Components/StateMachineComponent/Jump/Jump.cs" id="8_iplt1"]
+[ext_resource type="Script" uid="uid://b4fa8gasxsbc8" path="res://Components/StateMachineComponent/PlayerMove/PlayerMove.cs" id="7_owvpp"]
+[ext_resource type="Script" uid="uid://dfn6ceytcw6sv" path="res://Components/StateMachineComponent/PlayerFall/PlayerFall.cs" id="8_iplt1"]
 [ext_resource type="Script" uid="uid://dpgas2k84o43a" path="res://Components/StateMachineComponent/Shoot/Shoot.cs" id="8_vskfa"]
-[ext_resource type="Script" uid="uid://2n8cdm3jfht2" path="res://Components/StateMachineComponent/Fall/Fall.cs" id="9_owvpp"]
 [ext_resource type="Script" uid="uid://bfsnk4dshjq2i" path="res://Components/StateMachineComponent/Hurt/Hurt.cs" id="9_pjcup"]
 [ext_resource type="Script" uid="uid://bxt2xnjxy208n" path="res://Components/StateMachineComponent/Dead/Dead.cs" id="10_0poeq"]
+[ext_resource type="Script" uid="uid://b0daar2uol12v" path="res://Components/StateMachineComponent/PlayerSlide/PlayerSlide.cs" id="10_xr8lj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
 size = Vector2(32, 116)
@@ -53,13 +53,15 @@ ArmorAmount = 5.0
 initialState = NodePath("Fall")
 
 [node name="Move" type="Node" parent="StateMachineComponent" unique_id=1801200570]
-script = ExtResource("7_nhbkt")
+script = ExtResource("7_owvpp")
 
 [node name="Jump" type="Node" parent="StateMachineComponent" unique_id=364504020]
-script = ExtResource("8_iplt1")
 
 [node name="Fall" type="Node" parent="StateMachineComponent" unique_id=129551881]
-script = ExtResource("9_owvpp")
+script = ExtResource("8_iplt1")
+
+[node name="Slide" type="Node" parent="StateMachineComponent" unique_id=1607805271]
+script = ExtResource("10_xr8lj")
 
 [node name="Shoot" type="Node" parent="StateMachineComponent" unique_id=582176422]
 script = ExtResource("8_vskfa")
