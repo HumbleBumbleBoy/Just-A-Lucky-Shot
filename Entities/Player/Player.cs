@@ -3,12 +3,15 @@ using System;
 
 public partial class Player : CharacterBody2D, IMoveable
 {
-    [Export] public VelocityComponent VelocityComponent;
     private StateMachineComponent _stateMachine;
     public Vector2 TargetDirection;
+    [Export] public VelocityComponent VelocityComponent;
     [Export] private float _jumpHoldMaxTime;
     [Export] private float _minJumpForce;
     [Export] private float _maxJumpForce;
+    [Export] private float _dashCooldown;
+    private float _dashCooldownTimer;
+    private bool _canDash = true;
     private float _leeway = 0.1f;
     private float _coyoteTimer = 0.2f;
     private bool _isJumping = false;
@@ -18,12 +21,32 @@ public partial class Player : CharacterBody2D, IMoveable
     public override void _Ready()
     {
         _stateMachine = GetNode<StateMachineComponent>("StateMachineComponent");
-        _stateMachine.TransitionTo("PlayerFall");
+        _dashCooldownTimer = _dashCooldown;
     }
-    
+
     public override void _PhysicsProcess(double delta)
     {
-        float deltaF = (float)delta;
+         float deltaF = (float)delta;
+        
+        // Update dash cooldown EVERY frame
+        if (!_canDash)
+        {
+            _dashCooldownTimer -= deltaF;
+            if (_dashCooldownTimer <= 0.0f)
+            {
+                _canDash = true;
+                GD.Print($"  >>> Cooldown finished! Can dash again");
+            }
+        }
+
+        if (Input.IsActionJustPressed("Dash") && _canDash)
+        {
+            GD.Print(">>> DASH TRIGGERED!");
+            _canDash = false;
+            _dashCooldownTimer = _dashCooldown;
+            _stateMachine.TransitionTo("PlayerDash");
+            return;
+        }
         
         TargetDirection = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
         
@@ -41,7 +64,7 @@ public partial class Player : CharacterBody2D, IMoveable
         HandleJumpEnd();
         HandleFastFall(delta);
         ResetJumpOnGround();
-        
+
         MoveAndSlide();
     }
     

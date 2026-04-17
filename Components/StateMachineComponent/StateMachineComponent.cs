@@ -44,7 +44,19 @@ public partial class StateMachineComponent : Node
 
     public void TransitionTo(string state)
     {
-        if (!_states.ContainsKey(state) || _currentState == _states[state]) { return; }
+        if (!_states.ContainsKey(state))
+        {
+            GD.PrintErr($"State '{state}' NOT found in dictionary!");
+            return;
+        }
+        
+        if (_currentState == _states[state])
+        {
+            GD.Print($"Already in state {state}, skipping");
+            return;
+        }
+        
+        GD.Print($"StateMachine transitioning to: {state}");
         _currentState.Exit();
         _currentState = _states[state];
         _currentState.Enter();

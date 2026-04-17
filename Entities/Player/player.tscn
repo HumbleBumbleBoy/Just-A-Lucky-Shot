@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://b4fa8gasxsbc8" path="res://Components/StateMachineComponent/PlayerMove/PlayerMove.cs" id="7_owvpp"]
 [ext_resource type="Script" uid="uid://dfn6ceytcw6sv" path="res://Components/StateMachineComponent/PlayerFall/PlayerFall.cs" id="8_iplt1"]
 [ext_resource type="Script" uid="uid://dpgas2k84o43a" path="res://Components/StateMachineComponent/Shoot/Shoot.cs" id="8_vskfa"]
+[ext_resource type="Script" uid="uid://drfcpbalqan81" path="res://Components/StateMachineComponent/PlayerDash/PlayerDash.cs" id="9_iplt1"]
 [ext_resource type="Script" uid="uid://bfsnk4dshjq2i" path="res://Components/StateMachineComponent/Hurt/Hurt.cs" id="9_pjcup"]
 [ext_resource type="Script" uid="uid://bxt2xnjxy208n" path="res://Components/StateMachineComponent/Dead/Dead.cs" id="10_0poeq"]
-[ext_resource type="Script" uid="uid://b0daar2uol12v" path="res://Components/StateMachineComponent/PlayerSlide/PlayerSlide.cs" id="10_xr8lj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
 size = Vector2(32, 116)
@@ -21,12 +21,12 @@ radius = 48.052055
 
 [node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent")]
 collision_mask = 10
-floor_max_angle = 0.34906584
 script = ExtResource("1_x1y6q")
 VelocityComponent = NodePath("VelocityComponent")
 _jumpHoldMaxTime = 0.5
 _minJumpForce = -350.0
 _maxJumpForce = -600.0
+_dashCooldown = 1.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=927463031]
 texture = ExtResource("2_ap3xn")
@@ -53,16 +53,18 @@ MaxHealth = 10.0
 ArmorAmount = 5.0
 
 [node name="StateMachineComponent" parent="." unique_id=736838608 instance=ExtResource("6_r8fok")]
-initialState = NodePath("Move")
+initialState = NodePath("PlayerMove")
 
-[node name="Move" type="Node" parent="StateMachineComponent" unique_id=1801200570]
+[node name="PlayerMove" type="Node" parent="StateMachineComponent" unique_id=1801200570]
 script = ExtResource("7_owvpp")
 
-[node name="Fall" type="Node" parent="StateMachineComponent" unique_id=129551881]
+[node name="PlayerFall" type="Node" parent="StateMachineComponent" unique_id=129551881]
 script = ExtResource("8_iplt1")
 
-[node name="Slide" type="Node" parent="StateMachineComponent" unique_id=1607805271]
-script = ExtResource("10_xr8lj")
+[node name="PlayerDash" type="Node" parent="StateMachineComponent" unique_id=1312453821]
+script = ExtResource("9_iplt1")
+_dashForce = 1500.0
+_dashDuration = 0.3
 
 [node name="Shoot" type="Node" parent="StateMachineComponent" unique_id=582176422]
 script = ExtResource("8_vskfa")

@@ -7,7 +7,7 @@ public partial class VelocityComponent : Node
     [Export] public float GravitationalPull;  
     [Export] private float Damping;
     
-    public Vector2 CalculateVelocity(Vector2 currentVel, Vector2 targetDirection, float delta, float dampingMultiplier = 1.0f)
+    public Vector2 CalculateVelocity(Vector2 currentVel, Vector2 targetDirection, float delta)
     {
         if (targetDirection != Vector2.Zero)
         {
@@ -17,7 +17,7 @@ public partial class VelocityComponent : Node
         }
         
         currentVel.Y += GravitationalPull * 100 * delta;    // apply gravity
-        currentVel.X *= Mathf.Clamp(1.0f - (Damping * dampingMultiplier * delta), 0.0f, 5.0f);  // apply damping
+        currentVel.X *= Mathf.Clamp(1.0f - (Damping * delta), 0.0f, 1.0f);  // apply damping
         
         return currentVel;
     }
