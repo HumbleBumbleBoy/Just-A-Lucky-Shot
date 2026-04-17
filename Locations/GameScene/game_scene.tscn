@@ -9,6 +9,7 @@ size = Vector2(788, 20)
 
 [node name="Player" parent="." unique_id=1295010372 instance=ExtResource("1_d60t4")]
 position = Vector2(933, 603)
+_dashCooldown = 0.66
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=526510438]
 position = Vector2(320, 921)

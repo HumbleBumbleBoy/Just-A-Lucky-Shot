@@ -63,8 +63,8 @@ script = ExtResource("8_iplt1")
 
 [node name="PlayerDash" type="Node" parent="StateMachineComponent" unique_id=1312453821]
 script = ExtResource("9_iplt1")
-_dashForce = 1500.0
-_dashDuration = 0.3
+_dashForce = 2000.0
+_dashDuration = 0.33
 
 [node name="Shoot" type="Node" parent="StateMachineComponent" unique_id=582176422]
 script = ExtResource("8_vskfa")

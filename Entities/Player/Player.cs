@@ -28,26 +28,6 @@ public partial class Player : CharacterBody2D, IMoveable
     {
          float deltaF = (float)delta;
         
-        // Update dash cooldown EVERY frame
-        if (!_canDash)
-        {
-            _dashCooldownTimer -= deltaF;
-            if (_dashCooldownTimer <= 0.0f)
-            {
-                _canDash = true;
-                GD.Print($"  >>> Cooldown finished! Can dash again");
-            }
-        }
-
-        if (Input.IsActionJustPressed("Dash") && _canDash)
-        {
-            GD.Print(">>> DASH TRIGGERED!");
-            _canDash = false;
-            _dashCooldownTimer = _dashCooldown;
-            _stateMachine.TransitionTo("PlayerDash");
-            return;
-        }
-        
         TargetDirection = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
         
         if (Mathf.Abs(TargetDirection.X) < _leeway) TargetDirection.X = 0;
@@ -64,6 +44,7 @@ public partial class Player : CharacterBody2D, IMoveable
         HandleJumpEnd();
         HandleFastFall(delta);
         ResetJumpOnGround();
+        HandleDash(delta);
 
         MoveAndSlide();
     }
@@ -139,6 +120,27 @@ public partial class Player : CharacterBody2D, IMoveable
         if (IsOnFloor() && Velocity.Y >= 0)
         {
             _isJumping = false;
+        }
+    }
+
+    private void HandleDash(float delta)
+    {
+        // Update dash cooldown EVERY frame
+        if (!_canDash)
+        {
+            _dashCooldownTimer -= delta;
+            if (_dashCooldownTimer <= 0.0f)
+            {
+                _canDash = true;
+            }
+        }
+
+        if (Input.IsActionJustPressed("Dash") && _canDash)
+        {
+            _canDash = false;
+            _dashCooldownTimer = _dashCooldown;
+            _stateMachine.TransitionTo("PlayerDash");
+            return;
         }
     }
 }

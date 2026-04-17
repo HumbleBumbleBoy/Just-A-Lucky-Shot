@@ -34,7 +34,6 @@ public partial class PlayerDash : State
         
         if (_dashTimer <= 0f)
         {
-            GD.Print("Dash timer ended, transitioning out");
             if (_player.IsOnFloor())
                 stateMachineComponent.TransitionTo("PlayerMove");
             else
