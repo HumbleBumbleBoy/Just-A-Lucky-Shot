@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c7iskh0gyqamb"]
+
+[ext_resource type="Script" uid="uid://bwnnh3ax6hu5i" path="res://Components/HomingComponent/HomingComponent.cs" id="1_opteh"]
+
+[node name="HomingComponent" type="Node" unique_id=43176513]
+script = ExtResource("1_opteh")

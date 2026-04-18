@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dwaikwu7cc5je"]
+
+[ext_resource type="Script" uid="uid://bngpxbkkv3u21" path="res://Components/BulletDamageComponent/BulletDamageComponent.cs" id="1_fgrpb"]
+
+[node name="BulletDamageComponent" type="Node" unique_id=2036267882]
+script = ExtResource("1_fgrpb")

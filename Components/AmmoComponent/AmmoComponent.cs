@@ -1,8 +1,9 @@
 using Godot;
 using System;
 
-public partial class AmmoComponent : Node
+public partial class AmmoComponent : Node   // Add signals later
 {
+    public GenericGun GenericGun;
     [Export] public int TotalAmmo;  // How many bullets a gun has ie. 100 (If i want to implement infinite ammo for an enemy i can just set it to 99999 or something)
     [Export] public int ClipSize;   // How many bullets you can hold at a time ie. 20 cap with 100 total would be 20/80
     [Export] public float ReloadTime;   // In seconds
