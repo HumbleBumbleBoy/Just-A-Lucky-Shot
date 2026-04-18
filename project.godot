@@ -22,7 +22,7 @@ buses/default_bus_layout="uid://3edc8g7ui1m4"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/mode=4
 window/stretch/mode="viewport"
 
 [dotnet]
@@ -34,8 +34,8 @@ project/assembly_name="Slots"
 folder_colors={
 "res://Components/": "teal",
 "res://Entities/": "blue",
+"res://GameElements/": "red",
 "res://GeneralAssets/": "yellow",
-"res://Items/": "red",
 "res://Locations/": "green",
 "res://Managers/": "gray",
 "res://Resources/": "pink",
@@ -108,6 +108,7 @@ Dash={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

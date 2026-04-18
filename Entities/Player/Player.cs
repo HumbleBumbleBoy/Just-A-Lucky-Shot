@@ -13,7 +13,7 @@ public partial class Player : CharacterBody2D, IMoveable
     private float _dashCooldownTimer;
     private bool _canDash = true;
     private float _leeway = 0.1f;
-    private float _coyoteTimer = 0.2f;
+    private float _coyoteTimer = 0.1f;
     private bool _isJumping = false;
     private float _jumpHoldTimer = 0f;
     private bool _wasOnFloor = true;
@@ -53,7 +53,7 @@ public partial class Player : CharacterBody2D, IMoveable
     {
         if (IsOnFloor())
         {
-            _coyoteTimer = 0.2f;
+            _coyoteTimer = 0.1f;
             _wasOnFloor = true;
         }
         else if (_wasOnFloor)

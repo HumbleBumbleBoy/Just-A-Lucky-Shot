@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://mg4263oc8rd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ups4"]
+size = Vector2(523, 40)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1937690096]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984355864]
+position = Vector2(251.5, -10)
+shape = SubResource("RectangleShape2D_0ups4")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D" unique_id=1575194998]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.5
+offset_top = -20.0
+offset_right = 261.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true

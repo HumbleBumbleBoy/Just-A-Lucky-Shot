@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://drfcpbalqan81" path="res://Components/StateMachineComponent/PlayerDash/PlayerDash.cs" id="9_iplt1"]
 [ext_resource type="Script" uid="uid://bfsnk4dshjq2i" path="res://Components/StateMachineComponent/Hurt/Hurt.cs" id="9_pjcup"]
 [ext_resource type="Script" uid="uid://bxt2xnjxy208n" path="res://Components/StateMachineComponent/Dead/Dead.cs" id="10_0poeq"]
+[ext_resource type="PackedScene" uid="uid://7k0d7fji6350" path="res://Entities/Player/crosshair.tscn" id="13_owvpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
 size = Vector2(32, 116)
@@ -27,6 +28,11 @@ _jumpHoldMaxTime = 0.5
 _minJumpForce = -350.0
 _maxJumpForce = -600.0
 _dashCooldown = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1595146374]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=927463031]
 texture = ExtResource("2_ap3xn")
@@ -76,5 +82,7 @@ script = ExtResource("9_pjcup")
 script = ExtResource("10_0poeq")
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1510611989]
+
+[node name="Crosshair" parent="." unique_id=1728734754 instance=ExtResource("13_owvpp")]
 
 [connection signal="area_shape_entered" from="HurtBoxComponent" to="HurtBoxComponent" method="OnHurtBoxArea2DEntered"]
