@@ -14,6 +14,8 @@ size = Vector2(523, 40)
 
 [node name="GameScene" type="Node2D" unique_id=1604704548]
 
+[node name="Bullets" type="Node2D" parent="." unique_id=1367413192 groups=["BulletsNode"]]
+
 [node name="Player" parent="." unique_id=1295010372 instance=ExtResource("1_d60t4")]
 position = Vector2(933, 603)
 _dashCooldown = 0.66
@@ -541,3 +543,6 @@ scale = Vector2(10, 1)
 position = Vector2(3991, -613)
 rotation = 1.5707964
 scale = Vector2(10, 1)
+
+[editable path="Player"]
+[editable path="Player/GunPivot/GenericGun"]

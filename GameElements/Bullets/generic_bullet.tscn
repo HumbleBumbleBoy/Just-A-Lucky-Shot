@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ocar764v8p7q"]
 
 [ext_resource type="Script" uid="uid://bbdxpmcdib7d8" path="res://GameElements/Bullets/GenericBullet.cs" id="1_px47d"]
+[ext_resource type="Texture2D" uid="uid://dki3yv8cow7dj" path="res://GameElements/Bullets/GenericBullet.png" id="2_a41af"]
 [ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="2_xgcmc"]
 [ext_resource type="PackedScene" uid="uid://c7iskh0gyqamb" path="res://Components/HomingComponent/homing_component.tscn" id="3_a5bcf"]
 [ext_resource type="PackedScene" uid="uid://dwaikwu7cc5je" path="res://Components/BulletDamageComponent/bullet_damage_component.tscn" id="4_a41af"]
@@ -9,8 +10,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x076s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px47d"]
-radius = 16.0
-height = 44.0
+radius = 14.0
+height = 46.0
 
 [node name="GenericBullet" type="CharacterBody2D" unique_id=622731857]
 collision_layer = 4
@@ -18,21 +19,30 @@ collision_mask = 15
 script = ExtResource("1_px47d")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
+position = Vector2(0, 3)
+texture = ExtResource("2_a41af")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=399779474]
 shape = SubResource("RectangleShape2D_x076s")
 
 [node name="DetectionBox" type="Area2D" parent="." unique_id=1182742847]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox" unique_id=365031353]
+rotation = 4.712389
 shape = SubResource("CapsuleShape2D_px47d")
 
 [node name="VelocityComponent" parent="." unique_id=2130177268 instance=ExtResource("2_xgcmc")]
-
-[node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("3_a5bcf")]
+MaxSpeed = 5.0
+AccelerationCoefficient = 10.0
+GravitationalPull = 0.1
 
 [node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("4_a41af")]
 
 [node name="BulletSizeComponent" parent="." unique_id=233695172 instance=ExtResource("5_lurww")]
+
+[node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("3_a5bcf")]
+
+[connection signal="area_entered" from="DetectionBox" to="." method="OnDetectionBoxAreaEntered"]
+[connection signal="body_entered" from="DetectionBox" to="." method="OnDetectionBoxBodyEntered"]

@@ -1,7 +1,11 @@
 using Godot;
 
-public partial class GernericEntity : CharacterBody2D
+public partial class GenericEntity : CharacterBody2D
 {
+    [Export] public HealthComponent HealthComponent;
+    [Export] VelocityComponent VelocityComponent;
+    [Export] PathfindComponent PathfindComponent;
+
     public override void _Ready()
     {
         

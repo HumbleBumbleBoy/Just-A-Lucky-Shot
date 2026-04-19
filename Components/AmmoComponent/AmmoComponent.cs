@@ -39,6 +39,7 @@ public partial class AmmoComponent : Node   // Add signals later
         
         _isReloading = true;
         _reloadTimer.Start(ReloadTime);
+        // Play reload animation
     }
 
     private void OnReloadComplete()

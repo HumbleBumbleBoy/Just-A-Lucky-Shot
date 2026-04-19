@@ -1,20 +1,37 @@
 [gd_scene format=3 uid="uid://cmaac5pb20c3i"]
 
 [ext_resource type="Script" uid="uid://dl5016dtwqwmc" path="res://GameElements/Guns/GenericGun.cs" id="1_8a20y"]
+[ext_resource type="Texture2D" uid="uid://b7k205x02s7ed" path="res://GameElements/Guns/GenericGun.png" id="2_56qdw"]
 [ext_resource type="PackedScene" uid="uid://cd8jfuuqswngo" path="res://Components/AmmoComponent/ammo_component.tscn" id="2_qx8ko"]
 [ext_resource type="PackedScene" uid="uid://drxah6afpx2lh" path="res://Components/FiringComponent/firing_component.tscn" id="3_56qdw"]
 [ext_resource type="PackedScene" uid="uid://cbmfro4c117vy" path="res://Components/GunDamageComponent/gun_damage_component.tscn" id="4_tb657"]
 
-[node name="GenericGun" type="Node2D" unique_id=2069974562]
+[node name="GenericGun" type="Node2D" unique_id=2069974562 node_paths=PackedStringArray("ProjectileSpawnPoint")]
 script = ExtResource("1_8a20y")
+ProjectileSpawnPoint = NodePath("ProjectileSpawnPoint")
+BulletTypeEquiped = "RegularBullet"
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="." unique_id=36512875]
+position = Vector2(63, -7)
 
 [node name="GunSprite" type="Sprite2D" parent="." unique_id=657619173]
+texture = ExtResource("2_56qdw")
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GunSprite" unique_id=676359563]
 root_node = NodePath("../..")
 
 [node name="AmmoComponent" parent="." unique_id=1630256607 instance=ExtResource("2_qx8ko")]
+TotalAmmo = 120
+ClipSize = 40
+ReloadTime = 2.0
 
 [node name="FiringComponent" parent="." unique_id=1974060183 instance=ExtResource("3_56qdw")]
+FireRate = 3.0
+MaxFireRate = 10.0
+BulletsPerShot = 1
+SpreadDegrees = 15.0
+MaxSpreadDegrees = 90.0
 
 [node name="GunDamageComponent" parent="." unique_id=843077692 instance=ExtResource("4_tb657")]
+BaseDamage = 5.0

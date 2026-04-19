@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djmaetswre7jc" path="res://Entities/Player/Player.cs" id="1_x1y6q"]
 [ext_resource type="Texture2D" uid="uid://b115rr821q63h" path="res://Entities/GenericEntity.png" id="2_ap3xn"]
 [ext_resource type="PackedScene" uid="uid://ddr5l2ckmy25j" path="res://Components/HurtBoxComponent/hurt_box_component.tscn" id="3_iplt1"]
+[ext_resource type="PackedScene" uid="uid://cmaac5pb20c3i" path="res://GameElements/Guns/generic_gun.tscn" id="3_xr8lj"]
 [ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="4_owvpp"]
 [ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="5_xr8lj"]
 [ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="6_r8fok"]
@@ -20,7 +21,7 @@ size = Vector2(32, 116)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwypm"]
 radius = 48.052055
 
-[node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent")]
+[node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent", "HealthComponent", "VelocityComponent")]
 collision_mask = 10
 script = ExtResource("1_x1y6q")
 VelocityComponent = NodePath("VelocityComponent")
@@ -28,6 +29,8 @@ _jumpHoldMaxTime = 0.5
 _minJumpForce = -350.0
 _maxJumpForce = -600.0
 _dashCooldown = 1.0
+HealthComponent = NodePath("HealthComponent")
+VelocityComponent = NodePath("VelocityComponent")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1595146374]
 limit_smoothed = true
@@ -41,9 +44,15 @@ texture = ExtResource("2_ap3xn")
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_ltf5d")
 
-[node name="HurtBoxComponent" parent="." unique_id=329708331 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("3_iplt1")]
+[node name="GunPivot" type="Node2D" parent="." unique_id=1903963738]
+
+[node name="GenericGun" parent="GunPivot" unique_id=2069974562 instance=ExtResource("3_xr8lj")]
+position = Vector2(120, 0)
+
+[node name="HurtBoxComponent" parent="." unique_id=329708331 node_paths=PackedStringArray("HealthComponent", "_hurtBoxOwner") instance=ExtResource("3_iplt1")]
 collision_mask = 6
 HealthComponent = NodePath("../HealthComponent")
+_hurtBoxOwner = NodePath("..")
 
 [node name="HurtArea" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=1108092287]
 shape = SubResource("CircleShape2D_kwypm")
@@ -56,7 +65,7 @@ Damping = 3.0
 
 [node name="HealthComponent" parent="." unique_id=863554523 instance=ExtResource("5_xr8lj")]
 MaxHealth = 10.0
-ArmorAmount = 5.0
+ArmorAmount = 1.0
 
 [node name="StateMachineComponent" parent="." unique_id=736838608 instance=ExtResource("6_r8fok")]
 initialState = NodePath("PlayerMove")
@@ -84,5 +93,3 @@ script = ExtResource("10_0poeq")
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1510611989]
 
 [node name="Crosshair" parent="." unique_id=1728734754 instance=ExtResource("13_owvpp")]
-
-[connection signal="area_shape_entered" from="HurtBoxComponent" to="HurtBoxComponent" method="OnHurtBoxArea2DEntered"]

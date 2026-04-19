@@ -4,3 +4,5 @@
 
 [node name="HurtBoxComponent" type="Area2D" unique_id=1858289601]
 script = ExtResource("1_pb6is")
+
+[connection signal="area_entered" from="." to="." method="OnHurtBoxArea2DEntered"]

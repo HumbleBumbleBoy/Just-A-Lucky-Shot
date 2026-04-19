@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D, IMoveable
+public partial class Player : GenericEntity, IMoveable 
 {
     private StateMachineComponent _stateMachine;
     public Vector2 TargetDirection;
@@ -17,21 +17,25 @@ public partial class Player : CharacterBody2D, IMoveable
     private bool _isJumping = false;
     private float _jumpHoldTimer = 0f;
     private bool _wasOnFloor = true;
+    private GenericGun _equipedGun;
     
     public override void _Ready()
     {
         _stateMachine = GetNode<StateMachineComponent>("StateMachineComponent");
+        _equipedGun = GetNode<Node2D>("GunPivot").GetNode<GenericGun>("GenericGun");
         _dashCooldownTimer = _dashCooldown;
     }
 
     public override void _PhysicsProcess(double delta)
     {
-         float deltaF = (float)delta;
+        float deltaF = (float)delta;
         
         TargetDirection = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
         
         if (Mathf.Abs(TargetDirection.X) < _leeway) TargetDirection.X = 0;
         if (Mathf.Abs(TargetDirection.Y) < _leeway) TargetDirection.Y = 0;
+
+        if (Input.IsActionJustPressed("Shoot")) HandleShoot();
         
         _stateMachine._PhysicsProcess(deltaF);
     }
@@ -142,5 +146,11 @@ public partial class Player : CharacterBody2D, IMoveable
             _stateMachine.TransitionTo("PlayerDash");
             return;
         }
+    }
+
+    private void HandleShoot()
+    {
+        _equipedGun = GetNode<Node2D>("GunPivot").GetNode<GenericGun>("GenericGun");
+        _equipedGun.FiringComponent.Shoot();
     }
 }

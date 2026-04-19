@@ -4,7 +4,7 @@ using System;
 public partial class BulletDamageComponent : Node
 {
     public GenericBullet GenericBullet;
-    [Export] public float DamageMultiplayer;
+    [Export] public float DamageMultiplier;
     [Export] public int Pierce;   // How many targets until bullet expires (connect like a signal from root node to here and add a counter then call an expire function from generic bullet, btw remmeber to extend that class to future bullet types you retard, thanks)
     private int _pierceLeft;
 
@@ -13,23 +13,32 @@ public partial class BulletDamageComponent : Node
         _pierceLeft = Pierce;
     }
 
-    // lowk write functions that use allat
+    public void DealDamage(GenericEntity Target, float amount)
+    {
+        Target.HealthComponent.DecreaseHealth(amount);
+    }
+
+    public float CalculateDamage(float BaseDamage, float DamageMultiplayer)
+    {
+        float total = BaseDamage * DamageMultiplayer;
+        return total;
+    }
 
     // -----------------------------
 
     public void SetDamageMultiplayer(float amount)
     {
-        DamageMultiplayer = Mathf.Max(amount, 0.1f);    // Cap multiplier at 10% damage
+        DamageMultiplier = Mathf.Max(amount, 0.1f);    // Cap multiplier at 10% damage
     }
 
     public void IncreaseDamageMultiplayer(float amount)
     {
-        DamageMultiplayer = Mathf.Max(DamageMultiplayer + amount, 0.1f);
+        DamageMultiplier = Mathf.Max(DamageMultiplier + amount, 0.1f);
     }
 
     public void DecreaseDamageMultiplayer(float amount)
     {
-        DamageMultiplayer = Mathf.Max(DamageMultiplayer - amount, 0.1f);
+        DamageMultiplier = Mathf.Max(DamageMultiplier - amount, 0.1f);
     }
 
     // -----------------------------
