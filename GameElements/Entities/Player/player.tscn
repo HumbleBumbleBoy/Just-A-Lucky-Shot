@@ -21,16 +21,15 @@ size = Vector2(32, 116)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwypm"]
 radius = 48.052055
 
-[node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent", "HealthComponent", "VelocityComponent") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent") groups=["Player"]]
 collision_mask = 10
 script = ExtResource("1_x1y6q")
 VelocityComponent = NodePath("VelocityComponent")
+CharacterName = "Generic Player"
 _jumpHoldMaxTime = 0.5
 _minJumpForce = -350.0
 _maxJumpForce = -600.0
 _dashCooldown = 1.0
-HealthComponent = NodePath("HealthComponent")
-VelocityComponent = NodePath("VelocityComponent")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1595146374]
 limit_smoothed = true

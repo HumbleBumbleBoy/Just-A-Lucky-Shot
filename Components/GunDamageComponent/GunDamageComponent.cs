@@ -5,6 +5,7 @@ public partial class GunDamageComponent : Node   // Add signals later
 {
     public GenericGun GenericGun;
     [Export] public float BaseDamage;
+    public float _additionalDamage;
 
     public override void _Ready()
     {
@@ -26,5 +27,22 @@ public partial class GunDamageComponent : Node   // Add signals later
     public void DecreaseBaseDamage(float amount)
     {
         BaseDamage = Mathf.Max(BaseDamage - amount, 1f);
+    }
+
+    // -----------------------------
+
+    public void SetAdditionalDamage(float amount)
+    {
+        BaseDamage = Mathf.Max(amount, 0f);
+    }
+
+    public void IncreaseAdditionalDamage(float amount)
+    {
+        BaseDamage = Mathf.Max(BaseDamage + amount, 0f);
+    }
+
+    public void DecreaseAdditionalDamage(float amount)
+    {
+        BaseDamage = Mathf.Max(BaseDamage - amount, 0f);
     }
 }

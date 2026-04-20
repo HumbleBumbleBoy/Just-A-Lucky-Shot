@@ -1,11 +1,10 @@
-using Godot;
 using System;
+using Godot;
 
 public partial class Player : GenericEntity, IMoveable 
 {
-    private StateMachineComponent _stateMachine;
-    public Vector2 TargetDirection;
     [Export] public VelocityComponent VelocityComponent;
+    [Export] public string CharacterName;
     [Export] private float _jumpHoldMaxTime;
     [Export] private float _minJumpForce;
     [Export] private float _maxJumpForce;
@@ -18,6 +17,8 @@ public partial class Player : GenericEntity, IMoveable
     private float _jumpHoldTimer = 0f;
     private bool _wasOnFloor = true;
     private GenericGun _equipedGun;
+    private StateMachineComponent _stateMachine;
+    public Vector2 TargetDirection;
     
     public override void _Ready()
     {

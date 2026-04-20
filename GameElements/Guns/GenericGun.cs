@@ -50,9 +50,4 @@ public partial class GenericGun : Node2D
             Scale = new Vector2(1, 1);
         }
     }
-
-    private void HandleShoot()
-    {
-        // 
-    }
 }

@@ -1,23 +1,7 @@
+using System;
 using Godot;
 
-public partial class GenericEntity : CharacterBody2D
+public partial class GenericEntity : CharacterBody2D    // IT IS IMPERATIVE THAT THIS **REMAINS EMPTY** OUTISDE OF THIS ONE FUNCTION AND ALL ENEMY CODE IS HANDLED IN THE GENERIC ENEMY AND PLAYER IS SEPRATE (spaghetti code)
 {
     [Export] public HealthComponent HealthComponent;
-    [Export] VelocityComponent VelocityComponent;
-    [Export] PathfindComponent PathfindComponent;
-
-    public override void _Ready()
-    {
-        
-    }
-
-    public override void _Process(double delta)
-    {
-        
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        
-    }
 }
