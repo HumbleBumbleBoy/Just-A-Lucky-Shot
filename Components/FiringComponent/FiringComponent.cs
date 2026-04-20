@@ -26,8 +26,10 @@ public partial class FiringComponent : Node   // Add signals later
         GenericBullet _newBullet = (GenericBullet)bulletScene.Instantiate();
 
         _newBullet.BulletDamageComponent = _newBullet.GetNode<BulletDamageComponent>("BulletDamageComponent");
-
         _newBullet._trueDamage = _newBullet.BulletDamageComponent.CalculateDamage(GenericGun.DamageComponent.BaseDamage, _newBullet.BulletDamageComponent.DamageMultiplier); // find a way to check current bullet multiplier so i can add items that upgrade it
+        _newBullet.GlobalPosition = GenericGun.ProjectileSpawnPoint.GlobalPosition;
+        _newBullet.Rotation = GenericGun.GunPivot.Rotation;
+        
         _bulletsScene.AddChild(_newBullet);
     }
 

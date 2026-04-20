@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://beg42sp4wg6ss"]
+
+[ext_resource type="Script" uid="uid://dex3465k2c6cu" path="res://GameElements/Entities/GenericEntity.cs" id="1_cknka"]
+[ext_resource type="Texture2D" uid="uid://b115rr821q63h" path="res://GameElements/Entities/GenericEntity.png" id="2_uhj83"]
+[ext_resource type="PackedScene" uid="uid://cmaac5pb20c3i" path="res://GameElements/Guns/generic_gun.tscn" id="3_x2mtg"]
+[ext_resource type="PackedScene" uid="uid://ddr5l2ckmy25j" path="res://Components/HurtBoxComponent/hurt_box_component.tscn" id="4_b1w1i"]
+[ext_resource type="PackedScene" uid="uid://ct5we72wnmq0u" path="res://Components/PathfindComponent/pathfind_component.tscn" id="5_n083d"]
+[ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="6_8xd67"]
+[ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="7_tcvdq"]
+[ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="8_5f52i"]
+[ext_resource type="Script" uid="uid://dpgas2k84o43a" path="res://Components/StateMachineComponent/Shoot/Shoot.cs" id="9_ctjq3"]
+[ext_resource type="Script" uid="uid://buxdp5jq46g3t" path="res://Components/StateMachineComponent/Wander/Wander.cs" id="10_l4wq7"]
+[ext_resource type="Script" uid="uid://bfsnk4dshjq2i" path="res://Components/StateMachineComponent/Hurt/Hurt.cs" id="11_8a5m6"]
+[ext_resource type="Script" uid="uid://bxt2xnjxy208n" path="res://Components/StateMachineComponent/Dead/Dead.cs" id="12_axahu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
+size = Vector2(32, 116)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwypm"]
+radius = 48.052055
+
+[node name="GenericEntity" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("HealthComponent", "VelocityComponent", "PathfindComponent")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_cknka")
+HealthComponent = NodePath("HealthComponent")
+VelocityComponent = NodePath("VelocityComponent")
+PathfindComponent = NodePath("PathfindComponent")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=927463031]
+texture = ExtResource("2_uhj83")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1749894332]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ltf5d")
+
+[node name="GunPivot" type="Node2D" parent="." unique_id=155225983]
+
+[node name="GenericGun" parent="GunPivot" unique_id=2069974562 instance=ExtResource("3_x2mtg")]
+position = Vector2(120, 0)
+
+[node name="HurtBoxComponent" parent="." unique_id=329708331 node_paths=PackedStringArray("HealthComponent", "_hurtBoxOwner") instance=ExtResource("4_b1w1i")]
+HealthComponent = NodePath("../HealthComponent")
+_hurtBoxOwner = NodePath("..")
+
+[node name="HurtArea" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=1108092287]
+shape = SubResource("CircleShape2D_kwypm")
+
+[node name="PathfindComponent" parent="." unique_id=1558305364 node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("5_n083d")]
+VelocityComponent = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." unique_id=2130177268 instance=ExtResource("6_8xd67")]
+MaxSpeed = 20.0
+AccelerationCoefficient = 5.0
+
+[node name="HealthComponent" parent="." unique_id=863554523 instance=ExtResource("7_tcvdq")]
+
+[node name="StateMachineComponent" parent="." unique_id=736838608 instance=ExtResource("8_5f52i")]
+initialState = NodePath("Wander")
+
+[node name="Shoot" type="Node" parent="StateMachineComponent" unique_id=582176422]
+script = ExtResource("9_ctjq3")
+
+[node name="Wander" type="Node" parent="StateMachineComponent" unique_id=1968130184]
+script = ExtResource("10_l4wq7")
+
+[node name="Hurt" type="Node" parent="StateMachineComponent" unique_id=301142856]
+script = ExtResource("11_8a5m6")
+
+[node name="Dead" type="Node" parent="StateMachineComponent" unique_id=946113963]
+script = ExtResource("12_axahu")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1510611989]

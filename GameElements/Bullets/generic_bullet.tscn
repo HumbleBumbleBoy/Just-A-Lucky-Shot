@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c7iskh0gyqamb" path="res://Components/HomingComponent/homing_component.tscn" id="3_a5bcf"]
 [ext_resource type="PackedScene" uid="uid://dwaikwu7cc5je" path="res://Components/BulletDamageComponent/bullet_damage_component.tscn" id="4_a41af"]
 [ext_resource type="PackedScene" uid="uid://lxlulumene8o" path="res://Components/BulletSizeComponent/bullet_size_component.tscn" id="5_lurww"]
+[ext_resource type="PackedScene" uid="uid://q8ttxtwq16yy" path="res://Components/BulletBounceComponent/bullet_bounce_component.tscn" id="7_lurww"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x076s"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lurww"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px47d"]
 radius = 14.0
@@ -23,7 +24,7 @@ position = Vector2(0, 3)
 texture = ExtResource("2_a41af")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=399779474]
-shape = SubResource("RectangleShape2D_x076s")
+shape = SubResource("CircleShape2D_lurww")
 
 [node name="DetectionBox" type="Area2D" parent="." unique_id=1182742847]
 collision_layer = 4
@@ -44,5 +45,13 @@ GravitationalPull = 0.1
 
 [node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("3_a5bcf")]
 
+[node name="BulletBounceComponent" parent="." unique_id=48163582 instance=ExtResource("7_lurww")]
+
+[node name="Timer" type="Timer" parent="." unique_id=2076651585]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="DetectionBox" to="." method="OnDetectionBoxAreaEntered"]
 [connection signal="body_entered" from="DetectionBox" to="." method="OnDetectionBoxBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeoutEnd"]

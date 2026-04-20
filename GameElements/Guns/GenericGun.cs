@@ -4,8 +4,8 @@ using Godot;
 
 public partial class GenericGun : Node2D
 {
-    [Export] private Node2D GunPivot;
-    [Export] private Marker2D ProjectileSpawnPoint;
+    [Export] public Node2D GunPivot;
+    [Export] public Marker2D ProjectileSpawnPoint;
     [Export] public string BulletTypeEquiped;
     public AmmoComponent AmmoComponent;
     public FiringComponent FiringComponent;

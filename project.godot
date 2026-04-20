@@ -33,14 +33,20 @@ project/assembly_name="Slots"
 
 folder_colors={
 "res://Components/": "teal",
-"res://Entities/": "blue",
 "res://GameElements/": "red",
+"res://GameElements/Entities/": "red",
 "res://GeneralAssets/": "yellow",
 "res://Locations/": "green",
 "res://Managers/": "gray",
 "res://Resources/": "pink",
 "res://UI/": "purple"
 }
+
+[global_group]
+
+Player=""
+Enemy=""
+SolidWall=""
 
 [gui]
 

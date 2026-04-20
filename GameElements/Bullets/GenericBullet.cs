@@ -8,6 +8,7 @@ public partial class GenericBullet : CharacterBody2D
     public HomingComponent HomingComponent;
     public BulletDamageComponent BulletDamageComponent;
     public BulletSizeComponent BulletSizeComponent;
+    public BulletBounceComponent BulletBounceComponent;
     public float _trueDamage;
 
     public override void _Ready()
@@ -17,6 +18,7 @@ public partial class GenericBullet : CharacterBody2D
         HomingComponent = GetNode<HomingComponent>("HomingComponent");
         BulletDamageComponent = GetNode<BulletDamageComponent>("BulletDamageComponent");
         BulletSizeComponent = GetNode<BulletSizeComponent>("BulletSizeComponent");
+        BulletBounceComponent = GetNode<BulletBounceComponent>("BulletBounceComponent");
         
         // Set the GenericBullet reference in each component
         if (HomingComponent != null) HomingComponent.GenericBullet = this;
@@ -40,10 +42,21 @@ public partial class GenericBullet : CharacterBody2D
 
     public void OnDetectionBoxBodyEntered(Node2D node)
     {
-        if (node is Node2D SolidSurface)
+        if (node is Node2D SolidSurface) // Note for later, check if colided node is in group "SolidWall"
         {
-            // Check how many bounces left, if 0 then play a crash animation and disapear the bullet
+            GD.Print(SolidSurface.GetClass());
+            // Check how many bounces left, if 0 then play a crash animation and disapear the bullet otherwise bounce the bullet
+            if (BulletBounceComponent._bouncesLeft <= 0) {
+                KillBullet();
+            }
+            
+            // Calculate angle to bounce bullet, also fix spawning angle
+            BulletBounceComponent.DecreaseBouncesLeft(1);
         }
+    }
+
+    public void OnTimeoutEnd() {
+
     }
 
     private void FlyForward(double delta)
@@ -53,5 +66,11 @@ public partial class GenericBullet : CharacterBody2D
         Velocity = VelocityComponent.CalculateVelocity(Velocity, moveDirection, deltaF);
         Rotation = Velocity.Angle();
         MoveAndSlide();
+    }
+
+    private void KillBullet() {
+        // queue_free
+        GD.Print("Bullet fucking died");
+        QueueFree();
     }
 }

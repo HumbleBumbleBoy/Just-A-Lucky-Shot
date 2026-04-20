@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://q8ttxtwq16yy"]
+
+[ext_resource type="Script" uid="uid://kusiwesi2o3n" path="res://Components/BulletBounceComponent/BulletBounceComponent.cs" id="1_o5bxx"]
+
+[node name="BulletBounceComponent" type="Node" unique_id=48163582]
+script = ExtResource("1_o5bxx")
