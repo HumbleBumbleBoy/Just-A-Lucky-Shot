@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 
 public partial class HurtBoxComponent : Area2D
 {
@@ -16,12 +17,18 @@ public partial class HurtBoxComponent : Area2D
         GD.Print($"Area name: {area.Name} \nArea class: {area.GetClass()} \nArea parent name: {area.GetParent().Name} \nArea parent class: {area.GetParent().GetClass()}");
         if (area.GetParent() is GenericBullet bullet)
         {
-            bullet.BulletDamageComponent.DealDamage(_hurtBoxOwner, bullet._trueDamage);
-            if (_hurtBoxOwner.HealthComponent._currentHealth <= 0f)
+            // check if bullet is of the opposite group, if so deal damage
+            if ((_hurtBoxOwner.IsInGroup("Player") && bullet.firedBy == "Enemy") ||
+                (_hurtBoxOwner.IsInGroup("Enemy") && bullet.firedBy == "Player"))
             {
-                // play like an animation and fucking DIE
+                bullet.BulletDamageComponent.DealDamage(_hurtBoxOwner, bullet._trueDamage);
+                GD.Print($"Damage calculated: {bullet._trueDamage} \nHealth left: {_hurtBoxOwner.HealthComponent._currentHealth}");
+
+                if (_hurtBoxOwner.HealthComponent._currentHealth <= 0f)
+                {
+                    // play like an animation and fucking DIE
+                }
             }
-            GD.Print($"Damage calculated: {bullet._trueDamage} \nHealth left: {_hurtBoxOwner.HealthComponent._currentHealth}");
         }
     }
 }

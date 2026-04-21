@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 using Godot;
 
 public partial class Player : GenericEntity, IMoveable 
@@ -36,7 +37,7 @@ public partial class Player : GenericEntity, IMoveable
         if (Mathf.Abs(TargetDirection.X) < _leeway) TargetDirection.X = 0;
         if (Mathf.Abs(TargetDirection.Y) < _leeway) TargetDirection.Y = 0;
 
-        if (Input.IsActionJustPressed("Shoot")) HandleShoot();
+        if (Input.IsActionPressed("Shoot")) HandleShoot();
         
         _stateMachine._PhysicsProcess(deltaF);
     }
@@ -149,9 +150,9 @@ public partial class Player : GenericEntity, IMoveable
         }
     }
 
-    private void HandleShoot()
+    private void HandleShoot()  // Handles reload time and firerate in FiringComponent
     {
         _equipedGun = GetNode<Node2D>("GunPivot").GetNode<GenericGun>("GenericGun");
-        _equipedGun.FiringComponent.Shoot();
+        _equipedGun.FiringComponent.Shoot("Player");
     }
 }

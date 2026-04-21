@@ -8,7 +8,7 @@ public partial class AmmoComponent : Node   // Add signals later
     [Export] public int ClipSize;   // How many bullets you can hold at a time ie. 20 cap with 100 total would be 20/80
     [Export] public float ReloadTime;   // In seconds
     public int _currentAmmo;
-    private bool _isReloading = false;
+    public bool _isReloading = false;
     private Timer _reloadTimer;
 
     public override void _Ready()

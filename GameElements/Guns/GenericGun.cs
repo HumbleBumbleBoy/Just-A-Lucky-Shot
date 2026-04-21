@@ -1,12 +1,14 @@
-using System;
-using System.ComponentModel;
 using Godot;
 
 public partial class GenericGun : Node2D
 {
     [Export] public Node2D GunPivot;
     [Export] public Marker2D ProjectileSpawnPoint;
+    [Export] public string WeaponName;
+    [Export] public string WeaponDescription;
+    [Export] public int Rarity; // 1 - most common to 5 - most rare 
     [Export] public string BulletTypeEquiped;
+    [Export] public string[] EquipedItems;
     public AmmoComponent AmmoComponent;
     public FiringComponent FiringComponent;
     public GunDamageComponent DamageComponent;

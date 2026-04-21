@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://behxnryxfaqx8"]
+
+[ext_resource type="Script" uid="uid://fqn7ehobpa06" path="res://Components/BulletVelocityComponent/BulletVelocityComponent.cs" id="1_bfxal"]
+
+[node name="BulletVelocityComponent" type="Node" unique_id=598265744]
+script = ExtResource("1_bfxal")

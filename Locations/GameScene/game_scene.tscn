@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c56yaaytuo4ci"]
 
-[ext_resource type="PackedScene" uid="uid://cva47kpdveocv" path="res://Entities/Player/player.tscn" id="1_d60t4"]
+[ext_resource type="PackedScene" uid="uid://cva47kpdveocv" path="res://GameElements/Entities/Player/player.tscn" id="1_d60t4"]
 [ext_resource type="PackedScene" uid="uid://mg4263oc8rd" path="res://random block for testing.tscn" id="2_ni3s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1q5v"]
@@ -20,7 +20,7 @@ size = Vector2(523, 40)
 position = Vector2(933, 603)
 _dashCooldown = 0.66
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=526510438]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=526510438 groups=["SolidWall"]]
 position = Vector2(320, 921)
 collision_layer = 8
 collision_mask = 4
@@ -46,7 +46,7 @@ size_flags_horizontal = 4
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="." unique_id=1799989198]
+[node name="StaticBody2D5" type="StaticBody2D" parent="." unique_id=1799989198 groups=["SolidWall"]]
 position = Vector2(-266, 643)
 collision_layer = 8
 collision_mask = 4
@@ -72,7 +72,7 @@ size_flags_horizontal = 4
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=220923382]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=220923382 groups=["SolidWall"]]
 position = Vector2(1223, 713)
 collision_layer = 8
 collision_mask = 4
@@ -96,7 +96,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=2076217909]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=2076217909 groups=["SolidWall"]]
 position = Vector2(1707, 210)
 rotation = 1.5707964
 collision_layer = 8
@@ -121,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=582114262]
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=582114262 groups=["SolidWall"]]
 position = Vector2(-452, 1326)
 collision_layer = 8
 collision_mask = 4
@@ -146,7 +146,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="." unique_id=1891294405]
+[node name="StaticBody2D6" type="StaticBody2D" parent="." unique_id=1891294405 groups=["SolidWall"]]
 position = Vector2(1133.0001, 1318.0001)
 rotation = -0.17453292
 collision_layer = 8
@@ -172,7 +172,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="." unique_id=1918622385]
+[node name="StaticBody2D7" type="StaticBody2D" parent="." unique_id=1918622385 groups=["SolidWall"]]
 position = Vector2(355, 1619)
 collision_layer = 8
 collision_mask = 4
@@ -197,7 +197,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D8" type="StaticBody2D" parent="." unique_id=743537193]
+[node name="StaticBody2D8" type="StaticBody2D" parent="." unique_id=743537193 groups=["SolidWall"]]
 position = Vector2(-26, 387)
 rotation = 1.5707964
 collision_layer = 8
@@ -223,7 +223,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="." unique_id=1103233047]
+[node name="StaticBody2D9" type="StaticBody2D" parent="." unique_id=1103233047 groups=["SolidWall"]]
 position = Vector2(618, 196)
 collision_layer = 8
 collision_mask = 4
@@ -248,7 +248,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D10" type="StaticBody2D" parent="." unique_id=667682701]
+[node name="StaticBody2D10" type="StaticBody2D" parent="." unique_id=667682701 groups=["SolidWall"]]
 position = Vector2(-291, 1938)
 collision_layer = 8
 collision_mask = 4
@@ -273,7 +273,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D11" type="StaticBody2D" parent="." unique_id=1119143754]
+[node name="StaticBody2D11" type="StaticBody2D" parent="." unique_id=1119143754 groups=["SolidWall"]]
 position = Vector2(1725, 2243)
 collision_layer = 8
 collision_mask = 4
@@ -299,7 +299,7 @@ size_flags_horizontal = 4
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
-[node name="StaticBody2D12" type="StaticBody2D" parent="." unique_id=1838370838]
+[node name="StaticBody2D12" type="StaticBody2D" parent="." unique_id=1838370838 groups=["SolidWall"]]
 position = Vector2(1139, 1965)
 collision_layer = 8
 collision_mask = 4
@@ -325,7 +325,7 @@ size_flags_horizontal = 4
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
-[node name="StaticBody2D13" type="StaticBody2D" parent="." unique_id=1588111596]
+[node name="StaticBody2D13" type="StaticBody2D" parent="." unique_id=1588111596 groups=["SolidWall"]]
 position = Vector2(2628, 2035)
 collision_layer = 8
 collision_mask = 4
@@ -349,7 +349,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D14" type="StaticBody2D" parent="." unique_id=679374393]
+[node name="StaticBody2D14" type="StaticBody2D" parent="." unique_id=679374393 groups=["SolidWall"]]
 position = Vector2(3112, 1532)
 rotation = 1.5707964
 collision_layer = 8
@@ -374,7 +374,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D15" type="StaticBody2D" parent="." unique_id=433762582]
+[node name="StaticBody2D15" type="StaticBody2D" parent="." unique_id=433762582 groups=["SolidWall"]]
 position = Vector2(953, 2648)
 collision_layer = 8
 collision_mask = 4
@@ -399,7 +399,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D16" type="StaticBody2D" parent="." unique_id=1547717679]
+[node name="StaticBody2D16" type="StaticBody2D" parent="." unique_id=1547717679 groups=["SolidWall"]]
 position = Vector2(2538, 2640)
 rotation = -0.17453292
 collision_layer = 8
@@ -425,7 +425,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D17" type="StaticBody2D" parent="." unique_id=627399717]
+[node name="StaticBody2D17" type="StaticBody2D" parent="." unique_id=627399717 groups=["SolidWall"]]
 position = Vector2(1760, 2941)
 collision_layer = 8
 collision_mask = 4
@@ -450,7 +450,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D18" type="StaticBody2D" parent="." unique_id=511138402]
+[node name="StaticBody2D18" type="StaticBody2D" parent="." unique_id=511138402 groups=["SolidWall"]]
 position = Vector2(1379, 1709)
 rotation = 1.5707964
 collision_layer = 8
@@ -476,7 +476,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D19" type="StaticBody2D" parent="." unique_id=1551041552]
+[node name="StaticBody2D19" type="StaticBody2D" parent="." unique_id=1551041552 groups=["SolidWall"]]
 position = Vector2(2023, 1518)
 collision_layer = 8
 collision_mask = 4
@@ -501,7 +501,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D20" type="StaticBody2D" parent="." unique_id=177386105]
+[node name="StaticBody2D20" type="StaticBody2D" parent="." unique_id=177386105 groups=["SolidWall"]]
 position = Vector2(1114, 3260)
 collision_layer = 8
 collision_mask = 4
@@ -526,20 +526,20 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D21" parent="." unique_id=1937690096 instance=ExtResource("2_ni3s2")]
+[node name="StaticBody2D21" parent="." unique_id=1937690096 groups=["SolidWall"] instance=ExtResource("2_ni3s2")]
 position = Vector2(-965, -211)
 scale = Vector2(10, 1)
 
-[node name="StaticBody2D22" parent="." unique_id=841647416 instance=ExtResource("2_ni3s2")]
+[node name="StaticBody2D22" parent="." unique_id=841647416 groups=["SolidWall"] instance=ExtResource("2_ni3s2")]
 position = Vector2(-896.00006, 3608)
 scale = Vector2(10, 1)
 
-[node name="StaticBody2D23" parent="." unique_id=372951166 instance=ExtResource("2_ni3s2")]
+[node name="StaticBody2D23" parent="." unique_id=372951166 groups=["SolidWall"] instance=ExtResource("2_ni3s2")]
 position = Vector2(-969, -533)
 rotation = 1.5707964
 scale = Vector2(10, 1)
 
-[node name="StaticBody2D24" parent="." unique_id=55324180 instance=ExtResource("2_ni3s2")]
+[node name="StaticBody2D24" parent="." unique_id=55324180 groups=["SolidWall"] instance=ExtResource("2_ni3s2")]
 position = Vector2(3991, -613)
 rotation = 1.5707964
 scale = Vector2(10, 1)

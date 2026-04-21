@@ -8,7 +8,7 @@ public partial class BulletBounceComponent : Node
 
 	public override void _Ready()
 	{
-
+        _bouncesLeft = Bounces;
 	}
 
 	// -----------------------------

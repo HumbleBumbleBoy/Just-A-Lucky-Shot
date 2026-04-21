@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://da73mbbku6l62" path="res://GameElements/Bullets/RegularBullet/RegularBullet.cs" id="1_wuune"]
 [ext_resource type="Texture2D" uid="uid://dki3yv8cow7dj" path="res://GameElements/Bullets/GenericBullet.png" id="2_n6pri"]
-[ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="3_n0mkj"]
+[ext_resource type="PackedScene" uid="uid://behxnryxfaqx8" path="res://Components/BulletVelocityComponent/bullet_velocity_component.tscn" id="3_n6pri"]
 [ext_resource type="PackedScene" uid="uid://dwaikwu7cc5je" path="res://Components/BulletDamageComponent/bullet_damage_component.tscn" id="4_nx43y"]
 [ext_resource type="PackedScene" uid="uid://lxlulumene8o" path="res://Components/BulletSizeComponent/bullet_size_component.tscn" id="5_rxpwa"]
 [ext_resource type="PackedScene" uid="uid://c7iskh0gyqamb" path="res://Components/HomingComponent/homing_component.tscn" id="6_hqoby"]
@@ -16,7 +16,7 @@ height = 46.0
 
 [node name="RegularBullet" type="CharacterBody2D" unique_id=622731857]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 8
 script = ExtResource("1_wuune")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
@@ -34,10 +34,10 @@ collision_mask = 11
 rotation = 4.712389
 shape = SubResource("CapsuleShape2D_px47d")
 
-[node name="VelocityComponent" parent="." unique_id=2130177268 instance=ExtResource("3_n0mkj")]
-MaxSpeed = 5.0
-AccelerationCoefficient = 10.0
-GravitationalPull = 0.1
+[node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("3_n6pri")]
+MaxSpeed = 6.66
+AccelerationCoefficient = 50.0
+GravitationalPull = 5.0
 
 [node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("4_nx43y")]
 DamageMultiplier = 1.0
@@ -49,10 +49,11 @@ BulletSize = 1.0
 
 [node name="BulletBounceComponent" parent="." unique_id=48163582 instance=ExtResource("7_n6pri")]
 
-[node name="Timer" type="Timer" parent="." unique_id=2031837198]
+[node name="Timer" type="Timer" parent="." unique_id=294894044]
 wait_time = 10.0
 one_shot = true
 autostart = true
 
 [connection signal="area_entered" from="DetectionBox" to="." method="OnDetectionBoxAreaEntered"]
 [connection signal="body_entered" from="DetectionBox" to="." method="OnDetectionBoxBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeoutEnd"]

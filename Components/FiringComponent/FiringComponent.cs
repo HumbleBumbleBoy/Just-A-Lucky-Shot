@@ -8,29 +8,54 @@ public partial class FiringComponent : Node   // Add signals later
     [Export] public float FireRate;         // Shots per second
     [Export] public float MaxFireRate;      // Fire rate cap
     [Export] public int BulletsPerShot;
-    [Export] public float SpreadDegrees;    // 1.0f = 1 degree
+    [Export] public float SpreadDegrees;    // 1.0f = 2 degree (1 up 1 down)
     [Export] public float MaxSpreadDegrees; // I recommend to not go more than 120 tho
     private Node2D _bulletsScene;
+    private bool _canShoot = true;
 
     public override void _Ready()
     {
         _bulletsScene = (Node2D)GetTree().GetFirstNodeInGroup("BulletsNode");
+        
     }
 
-    public void Shoot()
+    public void Shoot(String GroupOfShooter)
     {
-        GenericGun.AmmoComponent.DecreaseCurrentAmmo(1);
-        // Spawn a bullet in the game scene node for bullets, calculate its true damage and assign it to the bullet HERE, fix the previous implementation and think 4 times next time dumbass
-        string _bullet = GenericGun.BulletTypeEquiped;
-        PackedScene bulletScene = GD.Load<PackedScene>($"res://GameElements/Bullets/{_bullet}/{ToSnakeCase(_bullet)}.tscn");
-        GenericBullet _newBullet = (GenericBullet)bulletScene.Instantiate();
-
-        _newBullet.BulletDamageComponent = _newBullet.GetNode<BulletDamageComponent>("BulletDamageComponent");
-        _newBullet._trueDamage = _newBullet.BulletDamageComponent.CalculateDamage(GenericGun.DamageComponent.BaseDamage + GenericGun.DamageComponent._additionalDamage, _newBullet.BulletDamageComponent.DamageMultiplier); // find a way to check current bullet multiplier so i can add items that upgrade it
-        _newBullet.GlobalPosition = GenericGun.ProjectileSpawnPoint.GlobalPosition;
-        _newBullet.Rotation = GenericGun.GunPivot.Rotation;
+        if (GenericGun.AmmoComponent._isReloading) return; // Don't shoot if reloading
+        if (GenericGun.AmmoComponent._currentAmmo <= 0) { GenericGun.AmmoComponent.Reload(); }; // Auto reload if no ammo in clip
+        if (!_canShoot) return;
         
-        _bulletsScene.AddChild(_newBullet);
+        ActuallyShoot(GroupOfShooter);
+
+        GetTree().CreateTimer(1.0f / FireRate).Timeout += () => _canShoot = true;   // Makes a one shot timer that enables shooting fireRate times per second
+    }
+
+    private void ActuallyShoot(String GroupOfShooter)
+    {
+        _canShoot = false;
+        GenericGun.AmmoComponent.DecreaseCurrentAmmo(1); // Shot fired, lose 1 ammo
+
+        string _bullet = GenericGun.BulletTypeEquiped; // Which bullet to use for calculations
+        PackedScene bulletScene = GD.Load<PackedScene>($"res://GameElements/Bullets/{_bullet}/{ToSnakeCase(_bullet)}.tscn"); // Get the scene for calculations
+        
+        int _bulletsShot = 0;
+        while (_bulletsShot < BulletsPerShot)   // Check how many bullets to shoot
+        {
+            _bulletsShot++;
+            GenericBullet _newBullet = (GenericBullet)bulletScene.Instantiate();
+
+            _newBullet.BulletDamageComponent = _newBullet.GetNode<BulletDamageComponent>("BulletDamageComponent");
+            _newBullet._trueDamage = _newBullet.BulletDamageComponent.CalculateDamage(GenericGun.DamageComponent.BaseDamage + GenericGun.DamageComponent._additionalDamage, _newBullet.BulletDamageComponent.DamageMultiplier + GenericGun.DamageComponent._additionalMultiplier); // find a way to check current bullet multiplier so i can add items that upgrade it
+            _newBullet.firedBy = GroupOfShooter;    // Set this property so HitboxComponent knows who to detect
+            _newBullet.GlobalPosition = GenericGun.ProjectileSpawnPoint.GlobalPosition;
+
+            float baseRotation = GenericGun.GunPivot.Rotation;
+            float randomDegrees = (float)GD.RandRange(-SpreadDegrees, SpreadDegrees);
+            float spreadAngle = Mathf.DegToRad(randomDegrees);
+            _newBullet.Rotation = baseRotation + spreadAngle;
+            
+            _bulletsScene.AddChild(_newBullet);
+        }        
     }
 
     public static string ToSnakeCase(string input)  // yes this is a fuckign converter in a random component

@@ -1,20 +1,25 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 
 public partial class GenericBullet : CharacterBody2D
 {
+    [Export] public string BulletName;
+    [Export] public string BulletDescription;
+    [Export] public int Rarity; // 1 - most common to 5 - most rare 
     public GenericGun FiredFrom;
-    public VelocityComponent VelocityComponent;
     public HomingComponent HomingComponent;
+    public BulletVelocityComponent BulletVelocityComponent;
     public BulletDamageComponent BulletDamageComponent;
     public BulletSizeComponent BulletSizeComponent;
     public BulletBounceComponent BulletBounceComponent;
     public float _trueDamage;
+    public string firedBy;
 
     public override void _Ready()
     {
         FiredFrom = GetParent() as GenericGun;
-        VelocityComponent = GetNode<VelocityComponent>("VelocityComponent");
+        BulletVelocityComponent = GetNode<BulletVelocityComponent>("BulletVelocityComponent");
         HomingComponent = GetNode<HomingComponent>("HomingComponent");
         BulletDamageComponent = GetNode<BulletDamageComponent>("BulletDamageComponent");
         BulletSizeComponent = GetNode<BulletSizeComponent>("BulletSizeComponent");
@@ -42,34 +47,35 @@ public partial class GenericBullet : CharacterBody2D
 
     public void OnDetectionBoxBodyEntered(Node2D node)
     {
-        if (node is Node2D SolidSurface) // Note for later, check if colided node is in group "SolidWall"
+        if (node is Node2D Colider) // Note for later, check if colided node is in group "SolidWall"
         {
-            GD.Print(SolidSurface.GetClass());
+            if (!Colider.IsInGroup("SolidWall")) return;
+
+            GD.Print(Colider.GetClass());
             // Check how many bounces left, if 0 then play a crash animation and disapear the bullet otherwise bounce the bullet
             if (BulletBounceComponent._bouncesLeft <= 0) {
                 KillBullet();
             }
             
-            // Calculate angle to bounce bullet, also fix spawning angle
+            // TODO: Calculate angle to bounce bullet
             BulletBounceComponent.DecreaseBouncesLeft(1);
         }
     }
 
     public void OnTimeoutEnd() {
-
+        KillBullet();
     }
 
     private void FlyForward(double delta)
     {
         float deltaF = (float)delta;
-        Vector2 moveDirection = Vector2.Right.Rotated(Rotation); // 
-        Velocity = VelocityComponent.CalculateVelocity(Velocity, moveDirection, deltaF);
-        Rotation = Velocity.Angle();
+        Vector2 moveDirection = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation));
+        Velocity = BulletVelocityComponent.CalculateVelocity(Velocity, moveDirection, deltaF);
         MoveAndSlide();
     }
 
     private void KillBullet() {
-        // queue_free
+        // also play animation
         GD.Print("Bullet fucking died");
         QueueFree();
     }

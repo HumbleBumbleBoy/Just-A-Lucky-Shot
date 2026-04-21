@@ -20,7 +20,7 @@ public partial class BulletDamageComponent : Node
 
     public float CalculateDamage(float BaseDamage, float DamageMultiplayer)
     {
-        float total = BaseDamage * DamageMultiplayer;
+        float total = Math.Max(BaseDamage * DamageMultiplayer, 1.0f);   // Cap minimum damage at 1
         return total;
     }
 
