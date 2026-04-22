@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://drfcpbalqan81" path="res://Components/StateMachineComponent/PlayerDash/PlayerDash.cs" id="9_iplt1"]
 [ext_resource type="Script" uid="uid://bfsnk4dshjq2i" path="res://Components/StateMachineComponent/Hurt/Hurt.cs" id="9_pjcup"]
 [ext_resource type="Script" uid="uid://bxt2xnjxy208n" path="res://Components/StateMachineComponent/Dead/Dead.cs" id="10_0poeq"]
-[ext_resource type="PackedScene" uid="uid://7k0d7fji6350" path="res://GameElements/Entities/Player/crosshair.tscn" id="13_owvpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
 size = Vector2(32, 116)
@@ -90,5 +89,3 @@ script = ExtResource("9_pjcup")
 script = ExtResource("10_0poeq")
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1510611989]
-
-[node name="Crosshair" parent="." unique_id=1728734754 instance=ExtResource("13_owvpp")]

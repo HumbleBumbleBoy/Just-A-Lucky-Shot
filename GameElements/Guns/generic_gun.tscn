@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://drxah6afpx2lh" path="res://Components/FiringComponent/firing_component.tscn" id="3_56qdw"]
 [ext_resource type="PackedScene" uid="uid://cbmfro4c117vy" path="res://Components/GunDamageComponent/gun_damage_component.tscn" id="4_tb657"]
 
-[node name="GenericGun" type="Node2D" unique_id=2069974562 node_paths=PackedStringArray("ProjectileSpawnPoint")]
+[node name="GenericGun" type="Node2D" unique_id=2069974562 node_paths=PackedStringArray("ProjectileSpawnPoint") groups=["Gun"]]
 script = ExtResource("1_8a20y")
 ProjectileSpawnPoint = NodePath("ProjectileSpawnPoint")
+WeaponTexture = ExtResource("2_56qdw")
+WeaponName = "Generic Gun"
 BulletTypeEquiped = "RegularBullet"
 
 [node name="ProjectileSpawnPoint" type="Marker2D" parent="." unique_id=36512875]

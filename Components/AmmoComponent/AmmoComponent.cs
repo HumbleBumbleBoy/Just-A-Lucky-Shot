@@ -10,6 +10,7 @@ public partial class AmmoComponent : Node   // Add signals later
     public int _currentAmmo;
     public bool _isReloading = false;
     private Timer _reloadTimer;
+    private bool _isPlayerReloading;
 
     public override void _Ready()
     {
@@ -31,7 +32,7 @@ public partial class AmmoComponent : Node   // Add signals later
         }
     }
 
-    public void Reload()
+    public void Reload(bool isPlayer)
     {
         if (_isReloading) return;
         if (_currentAmmo >= ClipSize) { /* Play fail reload animation */ return; };
@@ -39,6 +40,12 @@ public partial class AmmoComponent : Node   // Add signals later
         
         _isReloading = true;
         _reloadTimer.Start(ReloadTime);
+        _isPlayerReloading = isPlayer;
+        if (_isPlayerReloading && GenericGun?.player?.hud != null)
+        {
+            GenericGun.player.hud.GetNode<ColorRect>("CurrentGun").GetNode<ColorRect>("ReloadPlaceholder").Show();
+            // play animation on the ui box
+        }
         // Play reload animation
     }
 
@@ -51,6 +58,13 @@ public partial class AmmoComponent : Node   // Add signals later
         int toReload = Math.Min(needed, TotalAmmo);
         DecreaseTotalAmmo(toReload);
         IncreaseCurrentAmmo(toReload);
+        if (_isPlayerReloading && GenericGun?.player?.hud != null) // This is so scuffed but i think it won't break anythign i n the future
+        {
+            GenericGun.player.hud.UpdateAmmoInClipText(); 
+            GenericGun.player.hud.UpdateAmmoMaxText();
+            GenericGun.player.hud.GetNode<ColorRect>("CurrentGun").GetNode<ColorRect>("ReloadPlaceholder").Hide();
+            // end animation on the ui box
+        } 
         _isReloading = false;
     }
 

@@ -4,6 +4,7 @@ public partial class GenericGun : Node2D
 {
     [Export] public Node2D GunPivot;
     [Export] public Marker2D ProjectileSpawnPoint;
+    [Export] public Texture2D WeaponTexture;
     [Export] public string WeaponName;
     [Export] public string WeaponDescription;
     [Export] public int Rarity; // 1 - most common to 5 - most rare 
@@ -12,6 +13,8 @@ public partial class GenericGun : Node2D
     public AmmoComponent AmmoComponent;
     public FiringComponent FiringComponent;
     public GunDamageComponent DamageComponent;
+
+    public Player player; // This reference to the player is used only once and inside the ammoComponent for updating UI when reload done, it's the simplest way i can think of doing it as of now. (referece set at gamescene)
 
     public override void _Ready()
     {

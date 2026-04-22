@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dydqc77cq42sd" path="res://GameElements/Entities/Player/Crosshair.cs" id="1_6wok7"]
 
 [node name="Crosshair" type="Node2D" unique_id=1728734754]
+z_index = 999
 script = ExtResource("1_6wok7")
 
 [node name="ColorRect5" type="ColorRect" parent="." unique_id=785514544]
