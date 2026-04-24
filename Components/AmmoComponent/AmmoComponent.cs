@@ -9,7 +9,7 @@ public partial class AmmoComponent : Node   // Add signals later
     [Export] public float ReloadTime;   // In seconds
     public int _currentAmmo;
     public bool _isReloading = false;
-    private Timer _reloadTimer;
+    public Timer _reloadTimer;
     private bool _isPlayerReloading;
 
     public override void _Ready()
@@ -27,7 +27,6 @@ public partial class AmmoComponent : Node   // Add signals later
         if (_reloadTimer != null)   // If you're reloading but switch guns, enable reload on weapon again so it doesn't become unreloadable
         {
             _reloadTimer.Stop();
-            _reloadTimer.Timeout -= OnReloadComplete;
             _isReloading = false;
         }
     }

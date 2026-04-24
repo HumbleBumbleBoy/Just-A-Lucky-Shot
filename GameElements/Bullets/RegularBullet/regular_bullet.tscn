@@ -20,7 +20,7 @@ collision_mask = 8
 script = ExtResource("1_wuune")
 BulletName = "Regular Bullet"
 BulletDescription = "It doesn't get simpler than this"
-Rarity = 1
+Rarity = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
 position = Vector2(0, 3)

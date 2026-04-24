@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ddr5l2ckmy25j" path="res://Components/HurtBoxComponent/hurt_box_component.tscn" id="3_iplt1"]
 [ext_resource type="PackedScene" uid="uid://bjxafhb3x4bc7" path="res://GameElements/Guns/PumpActionShotgun/pump_action_shotgun.tscn" id="3_m3eal"]
 [ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="4_owvpp"]
+[ext_resource type="PackedScene" uid="uid://vsyffl88ida1" path="res://Components/WeaponSwitchComponent/weapon_switch_component.tscn" id="5_df4xk"]
 [ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="5_xr8lj"]
 [ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="6_r8fok"]
 [ext_resource type="Script" uid="uid://b4fa8gasxsbc8" path="res://Components/StateMachineComponent/PlayerMove/PlayerMove.cs" id="7_owvpp"]
@@ -20,10 +21,11 @@ size = Vector2(32, 116)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwypm"]
 radius = 48.052055
 
-[node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent", "HealthComponent") groups=["Player"]]
-collision_mask = 10
+[node name="Player" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent", "WeaponSwitchComponent", "HealthComponent") groups=["Player"]]
+collision_mask = 8
 script = ExtResource("1_x1y6q")
 VelocityComponent = NodePath("VelocityComponent")
+WeaponSwitchComponent = NodePath("WeaponSwitchComponent")
 CharacterName = "Generic Player"
 _jumpHoldMaxTime = 0.5
 _minJumpForce = -350.0
@@ -46,11 +48,18 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_ltf5d")
 metadata/_edit_lock_ = true
 
-[node name="GunPivot" type="Node2D" parent="." unique_id=1903963738]
+[node name="WeaponStorage" type="Node2D" parent="." unique_id=1105233531]
+visible = false
 metadata/_edit_lock_ = true
 
-[node name="PumpActionShotgun" parent="GunPivot" unique_id=2069974562 instance=ExtResource("3_m3eal")]
+[node name="PumpActionShotgun" parent="WeaponStorage" unique_id=2069974562 instance=ExtResource("3_m3eal")]
 position = Vector2(22, -3)
+
+[node name="PumpActionShotgun2" parent="WeaponStorage" unique_id=139990301 instance=ExtResource("3_m3eal")]
+WeaponName = "Pump Action Shotgun 2"
+
+[node name="GunPivot" type="Node2D" parent="." unique_id=1903963738]
+metadata/_edit_lock_ = true
 
 [node name="HurtBoxComponent" parent="." unique_id=329708331 node_paths=PackedStringArray("HealthComponent", "_hurtBoxOwner") instance=ExtResource("3_iplt1")]
 collision_mask = 6
@@ -61,6 +70,11 @@ metadata/_edit_lock_ = true
 [node name="HurtArea" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=1108092287]
 shape = SubResource("CircleShape2D_kwypm")
 metadata/_edit_lock_ = true
+
+[node name="WeaponSwitchComponent" parent="." unique_id=381687543 node_paths=PackedStringArray("WeaponStorageNode") instance=ExtResource("5_df4xk")]
+WeaponStorageNode = NodePath("../WeaponStorage")
+WeaponSlots = 3
+MaxWeaponSlots = 5
 
 [node name="VelocityComponent" parent="." unique_id=2130177268 instance=ExtResource("4_owvpp")]
 MaxSpeed = 4.0

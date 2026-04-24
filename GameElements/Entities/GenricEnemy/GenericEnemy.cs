@@ -36,7 +36,7 @@ public partial class GenericEnemy : GenericEntity, IMoveable
 		// if () HandleShoot();
 		// if () HandleReload();
 		
-		_stateMachine._PhysicsProcess(deltaF);  // <- this should also be in the timer
+		_stateMachine._PhysicsProcess(deltaF);
 	}
 	
 	public void HandleMovement(float delta)

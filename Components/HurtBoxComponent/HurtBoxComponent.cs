@@ -14,7 +14,6 @@ public partial class HurtBoxComponent : Area2D
 
     public void OnHurtBoxArea2DEntered(Area2D area)
     {
-        GD.Print($"Area name: {area.Name} \nArea class: {area.GetClass()} \nArea parent name: {area.GetParent().Name} \nArea parent class: {area.GetParent().GetClass()}");
         if (area.GetParent() is GenericBullet bullet)
         {
             // check if bullet is of the opposite group, if so deal damage
@@ -22,7 +21,6 @@ public partial class HurtBoxComponent : Area2D
                 (_hurtBoxOwner.IsInGroup("Enemy") && bullet.firedBy == "Player"))
             {
                 bullet.BulletDamageComponent.DealDamage(_hurtBoxOwner, bullet._trueDamage);
-                GD.Print($"Damage calculated: {bullet._trueDamage} \nHealth left: {_hurtBoxOwner.HealthComponent._currentHealth}");
 
                 if (_hurtBoxOwner.HealthComponent._currentHealth <= 0f)
                 {

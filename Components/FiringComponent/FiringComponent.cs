@@ -22,7 +22,7 @@ public partial class FiringComponent : Node   // Add signals later
     public void Shoot(String GroupOfShooter)
     {
         if (GenericGun.AmmoComponent._isReloading) return; // Don't shoot if reloading
-        if (GenericGun.AmmoComponent._currentAmmo <= 0) { GenericGun.AmmoComponent.Reload(GroupOfShooter == "Player"); /* Sets true/false based on shooter */ }; // Auto reload if no ammo in clip
+        if (GenericGun.AmmoComponent._currentAmmo <= 0) { GenericGun.AmmoComponent.Reload(GroupOfShooter == "Player"); /* Sets true/false based on shooter */ return; }; // Auto reload if no ammo in clip
         if (GenericGun.AmmoComponent._currentAmmo <= 0 && GenericGun.AmmoComponent.TotalAmmo <= 0) { return; }
         if (!_canShoot) return;
         

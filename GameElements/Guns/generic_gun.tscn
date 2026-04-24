@@ -32,7 +32,7 @@ ReloadTime = 2.0
 FireRate = 6.0
 MaxFireRate = 10.0
 BulletsPerShot = 1
-SpreadDegrees = 15.0
+SpreadDegrees = 10.0
 MaxSpreadDegrees = 60.0
 
 [node name="GunDamageComponent" parent="." unique_id=843077692 instance=ExtResource("4_tb657")]

@@ -1,11 +1,10 @@
-using System;
 using System.Linq;
-using System.Reflection.Metadata;
 using Godot;
 
 public partial class Player : GenericEntity, IMoveable 
 {
 	[Export] public VelocityComponent VelocityComponent;
+	[Export] public WeaponSwitchComponent WeaponSwitchComponent;
 	[Export] public string CharacterName;
 	[Export] private float _jumpHoldMaxTime;
 	[Export] private float _minJumpForce;
@@ -26,8 +25,9 @@ public partial class Player : GenericEntity, IMoveable
 	public override void _Ready()
 	{
 		_stateMachine = GetNode<StateMachineComponent>("StateMachineComponent");
-		_equipedGun = GetNode<Node2D>("GunPivot").GetChildren().First(child => child.IsInGroup("Gun")) as GenericGun;
 		_dashCooldownTimer = _dashCooldown;
+		WeaponSwitchComponent.SwitchToSlot(1);	// Switch to weapon slot 1 when first entering the game
+		_equipedGun = WeaponSwitchComponent._equipedGun;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -41,6 +41,17 @@ public partial class Player : GenericEntity, IMoveable
 
 		if (Input.IsActionPressed("Shoot")) HandleShoot();
 		if (Input.IsActionPressed("Reload")) HandleReload();
+		// Handle weapon switching
+		if (Input.IsActionJustPressed("ScrollDown")) WeaponSwitchComponent.SwitchWeaponByOffset(-1);
+		if (Input.IsActionJustPressed("ScrollUp")) WeaponSwitchComponent.SwitchWeaponByOffset(1);
+		for (int i = 1; i <= 9; i++)
+		{
+			int slot = i;
+			if (Input.IsActionJustPressed($"Slot{slot}"))
+			{
+				WeaponSwitchComponent.SwitchToSlot(slot);
+			}
+		}
 		
 		_stateMachine._PhysicsProcess(deltaF);
 	}
@@ -156,7 +167,7 @@ public partial class Player : GenericEntity, IMoveable
 	private void HandleShoot()  // Handles reload time and firerate in FiringComponent
 	{
 		hud.UpdateAmmoInClipText();
-		_equipedGun = GetNode<Node2D>("GunPivot").GetChildren().First(child => child.IsInGroup("Gun")) as GenericGun;
+		_equipedGun = WeaponSwitchComponent._equipedGun;
 		_equipedGun.FiringComponent.Shoot("Player");
 	}
 	

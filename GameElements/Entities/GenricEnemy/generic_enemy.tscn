@@ -23,7 +23,7 @@ radius = 48.052055
 
 [node name="GenericEnemy" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("VelocityComponent", "PathfindComponent", "HealthComponent") groups=["Enemy"]]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 8
 script = ExtResource("1_7ps54")
 VelocityComponent = NodePath("VelocityComponent")
 PathfindComponent = NodePath("PathfindComponent")
