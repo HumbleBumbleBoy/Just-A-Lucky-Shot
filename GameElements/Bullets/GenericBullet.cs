@@ -38,8 +38,15 @@ public partial class GenericBullet : CharacterBody2D
 
     public void OnDetectionBoxAreaEntered(Area2D area)
     {
-        if (area is HurtBoxComponent) // If colides with an entity
+        if (area.GetParent() is GenericEntity genericEntity) // If colides with an entity
         {
+            if ((genericEntity.IsInGroup("Player") && firedBy == "Enemy") ||
+                (genericEntity.IsInGroup("Enemy") && firedBy == "Player"))
+            {
+                BulletDamageComponent.DecreasePierce(1);
+
+                if (BulletDamageComponent._pierceLeft <= 0) { KillBullet(); }
+            }
             // note to self: implement another variable for the bullet so it checks who its fired from, so enemies dont shoot themselves nor the player shoot themself
             // Check how many pierce left, if 0 the play hit animation and disapear
         }
@@ -51,7 +58,6 @@ public partial class GenericBullet : CharacterBody2D
         {
             if (!Colider.IsInGroup("SolidWall")) return;
 
-            GD.Print(Colider.GetClass());
             // Check how many bounces left, if 0 then play a crash animation and disapear the bullet otherwise bounce the bullet
             if (BulletBounceComponent._bouncesLeft <= 0) {
                 KillBullet();
@@ -76,7 +82,6 @@ public partial class GenericBullet : CharacterBody2D
 
     private void KillBullet() {
         // also play animation
-        GD.Print("Bullet fucking died");
         QueueFree();
     }
 }

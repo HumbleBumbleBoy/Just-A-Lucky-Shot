@@ -6,7 +6,7 @@ public partial class BulletDamageComponent : Node
     public GenericBullet GenericBullet;
     [Export] public float DamageMultiplier;
     [Export] public int Pierce;   // How many targets until bullet expires (connect like a signal from root node to here and add a counter then call an expire function from generic bullet, btw remmeber to extend that class to future bullet types you retard, thanks)
-    private int _pierceLeft;
+    public int _pierceLeft;
 
     public override void _Ready()
     {

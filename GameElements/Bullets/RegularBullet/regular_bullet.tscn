@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c7iskh0gyqamb" path="res://Components/HomingComponent/homing_component.tscn" id="6_hqoby"]
 [ext_resource type="PackedScene" uid="uid://q8ttxtwq16yy" path="res://Components/BulletBounceComponent/bullet_bounce_component.tscn" id="7_n6pri"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x076s"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6pri"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px47d"]
 radius = 14.0
@@ -18,13 +18,16 @@ height = 46.0
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("1_wuune")
+BulletName = "Regular Bullet"
+BulletDescription = "It doesn't get simpler than this"
+Rarity = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
 position = Vector2(0, 3)
 texture = ExtResource("2_n6pri")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=399779474]
-shape = SubResource("RectangleShape2D_x076s")
+shape = SubResource("CircleShape2D_n6pri")
 
 [node name="DetectionBox" type="Area2D" parent="." unique_id=1182742847]
 collision_layer = 4
@@ -37,7 +40,6 @@ shape = SubResource("CapsuleShape2D_px47d")
 [node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("3_n6pri")]
 MaxSpeed = 8.0
 AccelerationCoefficient = 50.0
-GravitationalPull = 5.0
 
 [node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("4_nx43y")]
 DamageMultiplier = 1.0

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://rl4avdtrq1od"]
+
+[ext_resource type="Script" uid="uid://d18246b2p7gft" path="res://GameElements/Bullets/TinyPellet/TinyPellet.cs" id="1_mbhs0"]
+[ext_resource type="PackedScene" uid="uid://behxnryxfaqx8" path="res://Components/BulletVelocityComponent/bullet_velocity_component.tscn" id="2_mbhs0"]
+[ext_resource type="Texture2D" uid="uid://p2nqxuj85s4" path="res://GameElements/Bullets/TinyPellet/TinyPellet.png" id="2_yyp3u"]
+[ext_resource type="PackedScene" uid="uid://dwaikwu7cc5je" path="res://Components/BulletDamageComponent/bullet_damage_component.tscn" id="3_yyp3u"]
+[ext_resource type="PackedScene" uid="uid://lxlulumene8o" path="res://Components/BulletSizeComponent/bullet_size_component.tscn" id="4_oao2d"]
+[ext_resource type="PackedScene" uid="uid://c7iskh0gyqamb" path="res://Components/HomingComponent/homing_component.tscn" id="5_aj161"]
+[ext_resource type="PackedScene" uid="uid://q8ttxtwq16yy" path="res://Components/BulletBounceComponent/bullet_bounce_component.tscn" id="6_lwrfo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lurww"]
+radius = 4.1231055
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px47d"]
+radius = 6.0
+height = 12.0
+
+[node name="TinyPellet" type="CharacterBody2D" unique_id=622731857]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_mbhs0")
+BulletName = "Tiny Pellet"
+BulletDescription = "So small you could get one of these in your ear!"
+Rarity = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
+texture = ExtResource("2_yyp3u")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=399779474]
+shape = SubResource("CircleShape2D_lurww")
+metadata/_edit_lock_ = true
+
+[node name="DetectionBox" type="Area2D" parent="." unique_id=1182742847]
+collision_layer = 4
+collision_mask = 11
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox" unique_id=365031353]
+rotation = 4.712389
+shape = SubResource("CapsuleShape2D_px47d")
+metadata/_edit_lock_ = true
+
+[node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("2_mbhs0")]
+MaxSpeed = 20.0
+AccelerationCoefficient = 200.0
+
+[node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("3_yyp3u")]
+DamageMultiplier = 0.5
+
+[node name="BulletSizeComponent" parent="." unique_id=233695172 instance=ExtResource("4_oao2d")]
+MinBulletSize = 0.5
+BulletSize = 1.0
+MaxBulletSize = 1.5
+
+[node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("5_aj161")]
+
+[node name="BulletBounceComponent" parent="." unique_id=48163582 instance=ExtResource("6_lwrfo")]
+
+[node name="Timer" type="Timer" parent="." unique_id=2076651585]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="DetectionBox" to="." method="OnDetectionBoxAreaEntered"]
+[connection signal="body_entered" from="DetectionBox" to="." method="OnDetectionBoxBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeoutEnd"]

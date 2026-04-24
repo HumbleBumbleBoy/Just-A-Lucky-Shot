@@ -3,20 +3,24 @@ using System;
 
 public partial class Fall : State
 {
-    private CharacterBody2D _entity;
+    private GenericEnemy _enemy;
+    private VelocityComponent _velocity;
     
-    public override void Enter()
+    public override void Ready()
     {
-        _entity = GetOwner() as CharacterBody2D;
-        // Play "move" animation
+        _enemy = stateMachineComponent.GetParent<GenericEnemy>();
+        _velocity = _enemy.VelocityComponent;
     }
     
-    public override void PhysicsUpdate(float delta)
+    public override void PhysicsUpdate(float delta) // if sees player also keep moving in its direction. also attack it if can
     {
-        // Entity handles its own movement logic
-        if (_entity is IMoveable movable)
+        Vector2 moveDirection = new Vector2 (_enemy.TargetDirection.X, 0);
+        _enemy.Velocity = _velocity.CalculateVelocity(_enemy.Velocity, moveDirection, delta);
+        _enemy.HandleMovement(delta);
+        
+        if (_enemy.IsOnFloor() /* && sees player */) // on floor sees player -> move (towards it)
         {
-            movable.HandleMovement(delta);
-        }
+            stateMachineComponent.TransitionTo("Move");
+        } 
     }
 }

@@ -13,8 +13,10 @@ public partial class GenericGun : Node2D
     public AmmoComponent AmmoComponent;
     public FiringComponent FiringComponent;
     public GunDamageComponent DamageComponent;
+    private GenericEntity _gunOwner;
+    private bool _isHeldByPlayer;
 
-    public Player player; // This reference to the player is used only once and inside the ammoComponent for updating UI when reload done, it's the simplest way i can think of doing it as of now. (referece set at gamescene)
+    public Player player; // This reference to the player is used only twice, here and inside the ammoComponent for updating UI when reload done, it's the simplest way i can think of doing it as of now. (referece set at gamescene)
 
     public override void _Ready()
     {
@@ -27,12 +29,14 @@ public partial class GenericGun : Node2D
         if (FiringComponent != null) FiringComponent.GenericGun = this;
         if (DamageComponent != null) DamageComponent.GenericGun = this;
 
-        GunPivot ??= GetParent().GetParent().GetNode<Node2D>("GunPivot");
+        GunPivot ??= GetParent().GetParent().GetNode<Node2D>("GunPivot");   // not for future, if i don't initilise guns PRECISELY 2 nodes below root of player this might break, so i should add a node to player for storing guns in and just reference them from there, or rework this
+        _gunOwner = GetParent().GetParent() as GenericEntity;   // same issue here
+        if (_gunOwner.IsInGroup("Player")) _isHeldByPlayer = true;
     }
 
     public override void _Process(double delta)
     {
-        LookAtMouse();
+        if (_isHeldByPlayer) LookAtMouse();
     }
 
     private void LookAtMouse()

@@ -27,6 +27,7 @@ public partial class HurtBoxComponent : Area2D
                 if (_hurtBoxOwner.HealthComponent._currentHealth <= 0f)
                 {
                     // play like an animation and fucking DIE
+                    _hurtBoxOwner.QueueFree();
                 }
             }
         }

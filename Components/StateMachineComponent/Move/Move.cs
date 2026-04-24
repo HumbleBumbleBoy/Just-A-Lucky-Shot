@@ -3,20 +3,25 @@ using System;
 
 public partial class Move : State
 {
-    private CharacterBody2D _entity;
+    private GenericEnemy _enemy;
+    private VelocityComponent _velocity;
     
-    public override void Enter()
+    public override void Ready()
     {
-        _entity = GetOwner() as CharacterBody2D;
-        // Play "move" animation
+        _enemy = stateMachineComponent.GetParent<GenericEnemy>();
+        _velocity = _enemy.VelocityComponent;
     }
     
-    public override void PhysicsUpdate(float delta)
-    {
-        // Entity handles its own movement logic
-        if (_entity is IMoveable movable)
+    public override void PhysicsUpdate(float delta) // add ability to attack player while moving, move towards a set postiion to save resources
+    { 
+        Vector2 moveDirection = new Vector2(_enemy.TargetDirection.X, 0);
+        
+        _enemy.Velocity = _velocity.CalculateVelocity(_enemy.Velocity, moveDirection, delta);
+        _enemy.HandleMovement(delta);
+        
+        if (!_enemy.IsOnFloor())
         {
-            movable.HandleMovement(delta);
+            stateMachineComponent.TransitionTo("Fall");
         }
     }
 }

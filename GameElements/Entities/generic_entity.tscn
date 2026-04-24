@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="8_hqlkd"]
 [ext_resource type="Script" uid="uid://dpgas2k84o43a" path="res://Components/StateMachineComponent/Shoot/Shoot.cs" id="9_irpq3"]
 [ext_resource type="Script" uid="uid://buxdp5jq46g3t" path="res://Components/StateMachineComponent/Wander/Wander.cs" id="10_q2tpn"]
+[ext_resource type="Script" uid="uid://2n8cdm3jfht2" path="res://Components/StateMachineComponent/Fall/Fall.cs" id="10_r1tuy"]
 [ext_resource type="Script" uid="uid://bfsnk4dshjq2i" path="res://Components/StateMachineComponent/Hurt/Hurt.cs" id="11_gp04y"]
+[ext_resource type="Script" uid="uid://ctu5nu1m4gby3" path="res://Components/StateMachineComponent/Move/Move.cs" id="11_qtjn0"]
 [ext_resource type="Script" uid="uid://bxt2xnjxy208n" path="res://Components/StateMachineComponent/Dead/Dead.cs" id="12_e0yni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf5d"]
@@ -19,12 +21,9 @@ size = Vector2(32, 116)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwypm"]
 radius = 48.052055
 
-[node name="GenericEntity" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("HealthComponent", "VelocityComponent", "PathfindComponent")]
+[node name="GenericEntity" type="CharacterBody2D" unique_id=1295010372 node_paths=PackedStringArray("HealthComponent")]
 script = ExtResource("1_ghjjc")
-CharacterName = "Generic Entity"
 HealthComponent = NodePath("HealthComponent")
-VelocityComponent = NodePath("VelocityComponent")
-PathfindComponent = NodePath("PathfindComponent")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=927463031]
 texture = ExtResource("2_ey3at")
@@ -49,16 +48,24 @@ shape = SubResource("CircleShape2D_kwypm")
 VelocityComponent = NodePath("../VelocityComponent")
 
 [node name="VelocityComponent" parent="." unique_id=2130177268 instance=ExtResource("6_enog2")]
-MaxSpeed = 20.0
-AccelerationCoefficient = 5.0
+MaxSpeed = 4.0
+AccelerationCoefficient = 16.0
+GravitationalPull = 8.0
+Damping = 3.0
 
 [node name="HealthComponent" parent="." unique_id=863554523 instance=ExtResource("7_xpk2g")]
 
 [node name="StateMachineComponent" parent="." unique_id=736838608 instance=ExtResource("8_hqlkd")]
-initialState = NodePath("Wander")
+initialState = NodePath("Move")
 
 [node name="Shoot" type="Node" parent="StateMachineComponent" unique_id=582176422]
 script = ExtResource("9_irpq3")
+
+[node name="Fall" type="Node" parent="StateMachineComponent" unique_id=791270467]
+script = ExtResource("10_r1tuy")
+
+[node name="Move" type="Node" parent="StateMachineComponent" unique_id=963299770]
+script = ExtResource("11_qtjn0")
 
 [node name="Wander" type="Node" parent="StateMachineComponent" unique_id=1968130184]
 script = ExtResource("10_q2tpn")

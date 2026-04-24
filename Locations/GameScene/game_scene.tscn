@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b2ulskdqnwnr1" path="res://Locations/GameScene/GameScene.cs" id="1_iviic"]
 [ext_resource type="PackedScene" uid="uid://mg4263oc8rd" path="res://random block for testing.tscn" id="2_ni3s2"]
 [ext_resource type="PackedScene" uid="uid://7k0d7fji6350" path="res://GameElements/Entities/Player/crosshair.tscn" id="3_cnk3l"]
+[ext_resource type="PackedScene" uid="uid://b6n8gwhakl6j5" path="res://GameElements/Entities/GenricEnemy/generic_enemy.tscn" id="6_wex25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1q5v"]
 size = Vector2(788, 20)
@@ -35,30 +36,14 @@ grow_vertical = 1
 [node name="Bullets" type="Node2D" parent="." unique_id=1367413192 groups=["BulletsNode"]]
 
 [node name="Player" parent="." unique_id=1295010372 instance=ExtResource("1_d60t4")]
-position = Vector2(959, 539)
+position = Vector2(1346, 3498)
 _dashCooldown = 0.66
 
-[node name="Camera2D" parent="Player" index="0" unique_id=1595146374]
-metadata/_edit_lock_ = true
-
-[node name="Sprite" parent="Player" index="1" unique_id=927463031]
-metadata/_edit_lock_ = true
-
-[node name="CollisionBox" parent="Player" index="2" unique_id=1749894332]
-metadata/_edit_lock_ = true
-
-[node name="GunPivot" parent="Player" index="3" unique_id=1903963738]
-metadata/_edit_lock_ = true
-
-[node name="HurtBoxComponent" parent="Player" index="4" unique_id=329708331]
-metadata/_edit_lock_ = true
-
-[node name="HurtArea" parent="Player/HurtBoxComponent" index="0" unique_id=1108092287]
+[node name="PumpActionShotgun" parent="Player/GunPivot" parent_id_path=PackedInt32Array(1295010372, 1903963738) index="0" unique_id=2069974562]
 metadata/_edit_lock_ = true
 
 [node name="AudioPlayer" parent="Player" index="8" unique_id=1510611989]
 position = Vector2(-2, 23)
-metadata/_edit_lock_ = true
 
 [node name="Blocks" type="Node2D" parent="." unique_id=1196772832]
 
@@ -588,5 +573,10 @@ position = Vector2(3991, -613)
 rotation = 1.5707964
 scale = Vector2(10, 1)
 
+[node name="GenericEnemy" parent="." unique_id=117860520 instance=ExtResource("6_wex25")]
+position = Vector2(2128, 3407)
+
+[node name="GenericEnemy2" parent="." unique_id=405442074 instance=ExtResource("6_wex25")]
+position = Vector2(2377, 3450)
+
 [editable path="Player"]
-[editable path="Player/GunPivot/GenericGun"]
