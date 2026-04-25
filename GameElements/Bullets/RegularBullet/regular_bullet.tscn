@@ -51,7 +51,7 @@ BulletSize = 1.0
 [node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("6_hqoby")]
 
 [node name="BulletBounceComponent" parent="." unique_id=48163582 instance=ExtResource("7_n6pri")]
-Bounciness = 0.9
+Bounciness = 0.75
 
 [node name="Timer" type="Timer" parent="." unique_id=294894044]
 wait_time = 10.0
