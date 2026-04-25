@@ -38,8 +38,9 @@ rotation = 4.712389
 shape = SubResource("CapsuleShape2D_px47d")
 
 [node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("3_n6pri")]
-MaxSpeed = 8.0
-AccelerationCoefficient = 50.0
+MaxSpeed = 10.0
+AccelerationCoefficient = 32.0
+GravitationalPull = 1.0
 
 [node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("4_nx43y")]
 DamageMultiplier = 1.0
@@ -50,6 +51,7 @@ BulletSize = 1.0
 [node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("6_hqoby")]
 
 [node name="BulletBounceComponent" parent="." unique_id=48163582 instance=ExtResource("7_n6pri")]
+Bounces = 1
 
 [node name="Timer" type="Timer" parent="." unique_id=294894044]
 wait_time = 10.0

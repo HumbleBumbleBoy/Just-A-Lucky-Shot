@@ -56,7 +56,6 @@ public partial class StateMachineComponent : Node
             return;
         }
         
-        GD.Print($"StateMachine transitioning to: {state}");
         _currentState.Exit();
         _currentState = _states[state];
         _currentState.Enter();

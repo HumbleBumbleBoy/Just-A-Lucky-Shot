@@ -43,6 +43,7 @@ metadata/_edit_lock_ = true
 [node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("2_mbhs0")]
 MaxSpeed = 20.0
 AccelerationCoefficient = 200.0
+GravitationalPull = 2.0
 
 [node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("3_yyp3u")]
 DamageMultiplier = 0.5

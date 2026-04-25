@@ -54,17 +54,19 @@ public partial class GenericBullet : CharacterBody2D
 
     public void OnDetectionBoxBodyEntered(Node2D node)
     {
-        if (node is Node2D Colider) // Note for later, check if colided node is in group "SolidWall"
+        if (node is Node2D Collider) // Note for later, check if colided node is in group "SolidWall"
         {
-            if (!Colider.IsInGroup("SolidWall")) return;
+            if (!Collider.IsInGroup("SolidWall")) return;
 
             // Check how many bounces left, if 0 then play a crash animation and disapear the bullet otherwise bounce the bullet
             if (BulletBounceComponent._bouncesLeft <= 0) {
                 KillBullet();
+                return;
             }
             
-            // TODO: Calculate angle to bounce bullet
+            // bounce
             BulletBounceComponent.DecreaseBouncesLeft(1);
+
         }
     }
 
@@ -75,8 +77,9 @@ public partial class GenericBullet : CharacterBody2D
     private void FlyForward(double delta)
     {
         float deltaF = (float)delta;
-        Vector2 moveDirection = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation));
+        Vector2 moveDirection = Transform.X;
         Velocity = BulletVelocityComponent.CalculateVelocity(Velocity, moveDirection, deltaF);
+        Rotation = Velocity.Angle();
         MoveAndSlide();
     }
 
