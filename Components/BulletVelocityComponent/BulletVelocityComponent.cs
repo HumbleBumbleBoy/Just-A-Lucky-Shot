@@ -23,4 +23,29 @@ public partial class BulletVelocityComponent : Node
         
         return currentVel;
     }
+
+    public Vector2 CalculateBounce(Vector2 currentVel, Vector2 wallNormal)  // ???
+    {
+        // Get bounce component from parent
+        BulletBounceComponent bounceComp = GetParent().GetNode<BulletBounceComponent>("BulletBounceComponent");
+        
+        if (bounceComp == null) return currentVel;
+        
+        // CRITICAL: Make sure normal is normalized!
+        Vector2 normalizedNormal = wallNormal.Normalized();
+        
+        // Split velocity
+        float dotProduct = currentVel.Dot(normalizedNormal);
+        Vector2 perpendicular = dotProduct * normalizedNormal;
+        Vector2 parallel = currentVel - perpendicular;
+        
+        // Apply friction and bounciness
+        Vector2 newVelocity = (parallel * bounceComp.Friction) - (perpendicular * bounceComp.Bounciness);
+        
+        // Debug output
+        GD.Print($"  Dot: {dotProduct}, Perp: {perpendicular}, Parallel: {parallel}");
+        GD.Print($"  New Vel: {newVelocity}");
+        
+        return newVelocity;
+    }
 }

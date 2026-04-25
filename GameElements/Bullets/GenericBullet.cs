@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Text.RegularExpressions;
 
 public partial class GenericBullet : CharacterBody2D
 {
@@ -47,30 +46,17 @@ public partial class GenericBullet : CharacterBody2D
 
                 if (BulletDamageComponent._pierceLeft <= 0) { KillBullet(); }
             }
-            // note to self: implement another variable for the bullet so it checks who its fired from, so enemies dont shoot themselves nor the player shoot themself
-            // Check how many pierce left, if 0 the play hit animation and disapear
         }
     }
 
-    public void OnDetectionBoxBodyEntered(Node2D node)
+    private void KillBullet() 
     {
-        if (node is Node2D Collider) // Note for later, check if colided node is in group "SolidWall"
-        {
-            if (!Collider.IsInGroup("SolidWall")) return;
-
-            // Check how many bounces left, if 0 then play a crash animation and disapear the bullet otherwise bounce the bullet
-            if (BulletBounceComponent._bouncesLeft <= 0) {
-                KillBullet();
-                return;
-            }
-            
-            // bounce
-            BulletBounceComponent.DecreaseBouncesLeft(1);
-
-        }
+        // also play animation
+        QueueFree();
     }
 
-    public void OnTimeoutEnd() {
+    public void OnTimeoutEnd() 
+    {
         KillBullet();
     }
 
@@ -80,11 +66,30 @@ public partial class GenericBullet : CharacterBody2D
         Vector2 moveDirection = Transform.X;
         Velocity = BulletVelocityComponent.CalculateVelocity(Velocity, moveDirection, deltaF);
         Rotation = Velocity.Angle();
-        MoveAndSlide();
+        
+        // Use MoveAndCollide instead of MoveAndSlide
+        KinematicCollision2D collision = MoveAndCollide(Velocity * deltaF);
+        if (collision != null)
+        {
+            // Handle collision immediately with the correct normal
+            OnCollision(collision);
+        }
     }
 
-    private void KillBullet() {
-        // also play animation
-        QueueFree();
+    private void OnCollision(KinematicCollision2D collision)
+    {
+        Node2D collider = collision.GetCollider() as Node2D;
+        if (collider != null && collider.IsInGroup("SolidWall"))
+        {
+            if (BulletBounceComponent._bouncesLeft <= 0) 
+            {
+                KillBullet();
+                return;
+            }
+            
+            Vector2 wallNormal = collision.GetNormal();
+            Velocity = BulletVelocityComponent.CalculateBounce(Velocity, wallNormal);
+            BulletBounceComponent.DecreaseBouncesLeft(1);
+        }
     }
 }

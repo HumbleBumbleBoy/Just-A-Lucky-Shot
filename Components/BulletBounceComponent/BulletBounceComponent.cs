@@ -3,6 +3,8 @@ using System;
 
 public partial class BulletBounceComponent : Node
 {
+    [Export] public float Bounciness = 1.0f;  // Coefficient of restitution (r) - 1 = perfect bounce
+    [Export] public float Friction = 1.0f;
 	[Export] public int Bounces;
 	public int _bouncesLeft;
 
@@ -44,5 +46,4 @@ public partial class BulletBounceComponent : Node
     {
         _bouncesLeft = Mathf.Max(_bouncesLeft - amount, 0);
     }
-
 }

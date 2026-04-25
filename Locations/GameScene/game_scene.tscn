@@ -39,10 +39,10 @@ grow_vertical = 1
 position = Vector2(1346, 3498)
 _dashCooldown = 0.66
 
-[node name="PumpActionShotgun" parent="Player/GunPivot" parent_id_path=PackedInt32Array(1295010372, 1903963738) index="0" unique_id=2069974562]
+[node name="PumpActionShotgun" parent="Player/WeaponStorage" parent_id_path=PackedInt32Array(1295010372, 1105233531) index="0" unique_id=2069974562]
 metadata/_edit_lock_ = true
 
-[node name="AudioPlayer" parent="Player" index="8" unique_id=1510611989]
+[node name="AudioPlayer" parent="Player" index="10" unique_id=1510611989]
 position = Vector2(-2, 23)
 
 [node name="Blocks" type="Node2D" parent="." unique_id=1196772832]
