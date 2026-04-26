@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bjl71l25flnv0"]
+
+[ext_resource type="Script" uid="uid://bwmhemkj6xkus" path="res://UI/InGame/HUD/GunSlot.cs" id="1_qk7r5"]
+
+[node name="GunSlot" type="ColorRect" unique_id=177517782 node_paths=PackedStringArray("WeaponSpriteSlot", "GunNameLabel", "CurrentAmmoLabel", "MaxAmmoLabel")]
+custom_minimum_size = Vector2(373, 145)
+offset_right = 373.0
+offset_bottom = 145.0
+color = Color(0.32591546, 0.99999994, 0.29822972, 0.13333334)
+script = ExtResource("1_qk7r5")
+WeaponSpriteSlot = NodePath("Gun/MarginContainer/GunSprite")
+GunNameLabel = NodePath("Gun/HBoxContainer/GunNameText")
+CurrentAmmoLabel = NodePath("Gun/HBoxContainer/GunAmmo/AmmoInClipText")
+MaxAmmoLabel = NodePath("Gun/HBoxContainer/GunAmmo/AmmoMaxText")
+
+[node name="Gun" type="VBoxContainer" parent="." unique_id=1905814611]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Gun" unique_id=516328856]
+layout_mode = 2
+
+[node name="GunSprite" type="TextureRect" parent="Gun/MarginContainer" unique_id=309333018]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gun" unique_id=298534011]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="GunNameText" type="RichTextLabel" parent="Gun/HBoxContainer" unique_id=949488345]
+clip_contents = false
+custom_minimum_size = Vector2(10, 45)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+text = "Generic gun"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GunAmmo" type="HBoxContainer" parent="Gun/HBoxContainer" unique_id=1654637271]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="AmmoInClipText" type="RichTextLabel" parent="Gun/HBoxContainer/GunAmmo" unique_id=487428524]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+text = "20"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slash" type="RichTextLabel" parent="Gun/HBoxContainer/GunAmmo" unique_id=1810169055]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+text = "/"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmmoMaxText" type="RichTextLabel" parent="Gun/HBoxContainer/GunAmmo" unique_id=67959269]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+text = "100"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 0
+vertical_alignment = 1

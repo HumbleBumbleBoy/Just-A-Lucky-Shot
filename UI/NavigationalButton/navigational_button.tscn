@@ -15,6 +15,7 @@ Path = "/home/HumbleBumble/Documents/Godot projects/slots/Locations/Menu/main_me
 AudioStreamPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=517795776]
+texture_filter = 2
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 1
 anchors_preset = 8

@@ -23,7 +23,7 @@ buses/default_bus_layout="uid://3edc8g7ui1m4"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
@@ -180,6 +180,7 @@ ScrollDown={
 
 [physics]
 
+common/physics_ticks_per_second=144
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
 

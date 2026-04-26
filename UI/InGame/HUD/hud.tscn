@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b6sbj0p6m2ywr"]
 
 [ext_resource type="Script" uid="uid://cqc7d6jeug5lq" path="res://UI/InGame/HUD/Hud.cs" id="1_1mm51"]
+[ext_resource type="PackedScene" uid="uid://bjl71l25flnv0" path="res://UI/InGame/HUD/gun_slot.tscn" id="2_1mm51"]
 
-[node name="HUD" type="Control" unique_id=505423869 node_paths=PackedStringArray("CurrentGunSprite", "CurrentGunText", "AmmoInClipText", "AmmoMaxText")]
+[node name="HUD" type="Control" unique_id=505423869 node_paths=PackedStringArray("CurrentGunSprite", "CurrentGunText", "AmmoInClipText", "AmmoMaxText", "WeaponSlotsContainer")]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
@@ -10,13 +11,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_1mm51")
 CurrentGunSprite = NodePath("CurrentGun/CurrentGun/CurrentGunVisual/MarginContainer/CurrentGunSprite")
 CurrentGunText = NodePath("CurrentGun/CurrentGun/CurrentGunVisual/CurrentGunText")
 AmmoInClipText = NodePath("CurrentGun/CurrentGun/CurrentGunAmmo/AmmoInClipText")
 AmmoMaxText = NodePath("CurrentGun/CurrentGun/CurrentGunAmmo/AmmoMaxText")
+WeaponSlotsContainer = NodePath("WeaponsContainer")
+WeaponSlotScene = ExtResource("2_1mm51")
+
+[node name="WeaponsContainer" type="HBoxContainer" parent="." unique_id=2146004255]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -63.0
+offset_right = 1543.0
+grow_vertical = 0
 
 [node name="CurrentGun" type="ColorRect" parent="." unique_id=1209947899]
+custom_minimum_size = Vector2(373, 235)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

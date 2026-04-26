@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://phqk0uep3hjg"]
 
 [ext_resource type="Script" uid="uid://da73mbbku6l62" path="res://GameElements/Bullets/RegularBullet/RegularBullet.cs" id="1_wuune"]
-[ext_resource type="Texture2D" uid="uid://dki3yv8cow7dj" path="res://GameElements/Bullets/GenericBullet.png" id="2_n6pri"]
+[ext_resource type="Texture2D" uid="uid://1hdp40emfgp5" path="res://GameElements/Bullets/RegularBullet/RegularBullet.png" id="2_n6pri"]
 [ext_resource type="PackedScene" uid="uid://behxnryxfaqx8" path="res://Components/BulletVelocityComponent/bullet_velocity_component.tscn" id="3_n6pri"]
 [ext_resource type="PackedScene" uid="uid://dwaikwu7cc5je" path="res://Components/BulletDamageComponent/bullet_damage_component.tscn" id="4_nx43y"]
 [ext_resource type="PackedScene" uid="uid://lxlulumene8o" path="res://Components/BulletSizeComponent/bullet_size_component.tscn" id="5_rxpwa"]
@@ -9,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://q8ttxtwq16yy" path="res://Components/BulletBounceComponent/bullet_bounce_component.tscn" id="7_n6pri"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n6pri"]
+radius = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px47d"]
-radius = 14.0
-height = 46.0
+radius = 8.0
+height = 32.0
 
 [node name="RegularBullet" type="CharacterBody2D" unique_id=622731857]
 collision_layer = 4
@@ -23,7 +24,7 @@ BulletDescription = "It doesn't get simpler than this"
 Rarity = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
-position = Vector2(0, 3)
+scale = Vector2(1.3177081, 1.3177084)
 texture = ExtResource("2_n6pri")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=399779474]
@@ -32,14 +33,16 @@ shape = SubResource("CircleShape2D_n6pri")
 [node name="DetectionBox" type="Area2D" parent="." unique_id=1182742847]
 collision_layer = 4
 collision_mask = 11
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox" unique_id=365031353]
 rotation = 4.712389
 shape = SubResource("CapsuleShape2D_px47d")
+metadata/_edit_lock_ = true
 
 [node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("3_n6pri")]
-MaxSpeed = 10.0
-AccelerationCoefficient = 32.0
+MaxSpeed = 12.0
+AccelerationCoefficient = 48.0
 GravitationalPull = 1.0
 
 [node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("4_nx43y")]

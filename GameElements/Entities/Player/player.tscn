@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b115rr821q63h" path="res://GameElements/Entities/GenericEntity.png" id="2_ap3xn"]
 [ext_resource type="PackedScene" uid="uid://ddr5l2ckmy25j" path="res://Components/HurtBoxComponent/hurt_box_component.tscn" id="3_iplt1"]
 [ext_resource type="PackedScene" uid="uid://bjxafhb3x4bc7" path="res://GameElements/Guns/PumpActionShotgun/pump_action_shotgun.tscn" id="3_m3eal"]
-[ext_resource type="PackedScene" uid="uid://cmaac5pb20c3i" path="res://GameElements/Guns/generic_gun.tscn" id="4_j8eab"]
+[ext_resource type="PackedScene" uid="uid://cfk44qdlpov30" path="res://GameElements/Guns/Kalashnikov/kalashnikov.tscn" id="4_j8eab"]
 [ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="4_owvpp"]
 [ext_resource type="PackedScene" uid="uid://vsyffl88ida1" path="res://Components/WeaponSwitchComponent/weapon_switch_component.tscn" id="5_df4xk"]
 [ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="5_xr8lj"]
@@ -57,7 +57,7 @@ metadata/_edit_lock_ = true
 [node name="PumpActionShotgun" parent="WeaponStorage" unique_id=2069974562 instance=ExtResource("3_m3eal")]
 position = Vector2(22, -3)
 
-[node name="GenericGun" parent="WeaponStorage" unique_id=1869085889 instance=ExtResource("4_j8eab")]
+[node name="Kalashnikov" parent="WeaponStorage" unique_id=2074541227 instance=ExtResource("4_j8eab")]
 
 [node name="GunPivot" type="Node2D" parent="." unique_id=1903963738]
 metadata/_edit_lock_ = true

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cfk44qdlpov30"]
+
+[ext_resource type="Texture2D" uid="uid://cxtuhpju1wou0" path="res://GameElements/Guns/Kalashnikov/Kalashnikov.png" id="1_d32uq"]
+[ext_resource type="Script" uid="uid://do58ehhq0mmii" path="res://GameElements/Guns/Kalashnikov/Kalashnikov.cs" id="1_heftc"]
+[ext_resource type="PackedScene" uid="uid://cd8jfuuqswngo" path="res://Components/AmmoComponent/ammo_component.tscn" id="2_heftc"]
+[ext_resource type="PackedScene" uid="uid://drxah6afpx2lh" path="res://Components/FiringComponent/firing_component.tscn" id="3_a20e0"]
+[ext_resource type="PackedScene" uid="uid://cbmfro4c117vy" path="res://Components/GunDamageComponent/gun_damage_component.tscn" id="4_7btlj"]
+
+[node name="Kalashnikov" type="Node2D" unique_id=2069974562 node_paths=PackedStringArray("ProjectileSpawnPoint") groups=["Gun"]]
+script = ExtResource("1_heftc")
+ProjectileSpawnPoint = NodePath("GunSprite/ProjectileSpawnPoint")
+WeaponTexture = ExtResource("1_d32uq")
+WeaponName = "Kalashnikov"
+WeaponDescription = "Ol' Reliable"
+Rarity = 3
+BulletTypeEquiped = "RegularBullet"
+
+[node name="GunSprite" type="Sprite2D" parent="." unique_id=657619173]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_d32uq")
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="GunSprite" unique_id=36512875]
+position = Vector2(31.41284, -2.4954123)
+
+[node name="AmmoComponent" parent="." unique_id=1630256607 instance=ExtResource("2_heftc")]
+TotalAmmo = 120
+ClipSize = 30
+ReloadTime = 2.0
+
+[node name="FiringComponent" parent="." unique_id=1974060183 instance=ExtResource("3_a20e0")]
+FireRate = 4.0
+MaxFireRate = 12.0
+BulletsPerShot = 1
+SpreadDegrees = 10.0
+MaxSpreadDegrees = 60.0
+
+[node name="GunDamageComponent" parent="." unique_id=843077692 instance=ExtResource("4_7btlj")]
+BaseDamage = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=676359563]
