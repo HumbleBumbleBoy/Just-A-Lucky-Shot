@@ -5,10 +5,11 @@ using System.Collections.Generic;
 public partial class Hud : Control
 {
     [Export] TextureRect CurrentGunSprite;
+    [Export] public RichTextLabel CurrentGunIndexText;
     [Export] RichTextLabel CurrentGunText;
     [Export] RichTextLabel AmmoInClipText;
     [Export] RichTextLabel AmmoMaxText;
-    [Export] HBoxContainer WeaponSlotsContainer;
+    [Export] public VBoxContainer WeaponSlotsContainer;
     [Export] PackedScene WeaponSlotScene;
 
     public Player _player;
@@ -18,6 +19,7 @@ public partial class Hud : Control
     {
         UpdateCurrentGunSprite();
         UpdateCurrentGunText();
+        UpdateCurrentGunIndex();
         UpdateAmmoInClipText();
         UpdateAmmoMaxText();
         RefreshWeaponSlots();
@@ -53,6 +55,10 @@ public partial class Hud : Control
             if (slotInstance.GunNameLabel != null)
                 slotInstance.GunNameLabel.Text = weapon.WeaponName;
 
+            // Set weapon index
+            if (slotInstance.GunIndex != null)
+                slotInstance.GunIndex.Text = (i + 1).ToString();
+
             // Set weapon ammo in clip
             if (slotInstance.CurrentAmmoLabel != null)
                 slotInstance.CurrentAmmoLabel.Text = weapon.AmmoComponent._currentAmmo.ToString();
@@ -60,10 +66,6 @@ public partial class Hud : Control
             // Set weapon max ammo
             if (slotInstance.MaxAmmoLabel != null)
                 slotInstance.MaxAmmoLabel.Text = weapon.AmmoComponent.TotalAmmo.ToString();
-            
-            // Set weapon icon
-            if (slotInstance.WeaponSpriteSlot != null && weapon.WeaponTexture != null)
-                slotInstance.WeaponSpriteSlot.Texture = weapon.WeaponTexture;
             
             // Store the weapon reference in the slot
             slotInstance.WeaponReference = weapon;
@@ -87,6 +89,11 @@ public partial class Hud : Control
     public void UpdateCurrentGunText()
     {
         CurrentGunText.Text = _player._equipedGun.WeaponName;
+    }
+
+    public void UpdateCurrentGunIndex()
+    {
+        CurrentGunIndexText.Text = (_player.WeaponSwitchComponent.AvailableWeapons.IndexOf(_player._equipedGun) + 1).ToString(); // goofy ah way to do it
     }
 
     public void UpdateAmmoInClipText()

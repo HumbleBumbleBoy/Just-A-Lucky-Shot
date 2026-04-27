@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqc7d6jeug5lq" path="res://UI/InGame/HUD/Hud.cs" id="1_1mm51"]
 [ext_resource type="PackedScene" uid="uid://bjl71l25flnv0" path="res://UI/InGame/HUD/gun_slot.tscn" id="2_1mm51"]
 
-[node name="HUD" type="Control" unique_id=505423869 node_paths=PackedStringArray("CurrentGunSprite", "CurrentGunText", "AmmoInClipText", "AmmoMaxText", "WeaponSlotsContainer")]
+[node name="HUD" type="Control" unique_id=505423869 node_paths=PackedStringArray("CurrentGunSprite", "CurrentGunIndexText", "CurrentGunText", "AmmoInClipText", "AmmoMaxText", "WeaponSlotsContainer")]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
@@ -14,20 +14,25 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1mm51")
 CurrentGunSprite = NodePath("CurrentGun/CurrentGun/CurrentGunVisual/MarginContainer/CurrentGunSprite")
+CurrentGunIndexText = NodePath("CurrentGun/CurrentGun/CurrentGunVisual/Index")
 CurrentGunText = NodePath("CurrentGun/CurrentGun/CurrentGunVisual/CurrentGunText")
 AmmoInClipText = NodePath("CurrentGun/CurrentGun/CurrentGunAmmo/AmmoInClipText")
 AmmoMaxText = NodePath("CurrentGun/CurrentGun/CurrentGunAmmo/AmmoMaxText")
 WeaponSlotsContainer = NodePath("WeaponsContainer")
 WeaponSlotScene = ExtResource("2_1mm51")
 
-[node name="WeaponsContainer" type="HBoxContainer" parent="." unique_id=2146004255]
+[node name="WeaponsContainer" type="VBoxContainer" parent="." unique_id=1478750285]
+custom_minimum_size = Vector2(373, 0)
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -63.0
-offset_right = 1543.0
-grow_vertical = 0
+offset_left = -373.0
+offset_bottom = -249.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
 
 [node name="CurrentGun" type="ColorRect" parent="." unique_id=1209947899]
 custom_minimum_size = Vector2(373, 235)
@@ -38,7 +43,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -373.0
-offset_top = -235.0
+offset_top = -246.0
 grow_horizontal = 0
 grow_vertical = 0
 color = Color(0, 0.9764706, 0, 0.13333334)
@@ -53,7 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slash" type="RichTextLabel" parent="CurrentGun/ReloadPlaceholder" unique_id=1133346667]
+[node name="Message" type="RichTextLabel" parent="CurrentGun/ReloadPlaceholder" unique_id=1133346667]
 z_index = 1
 clip_contents = false
 custom_minimum_size = Vector2(10, 0)
@@ -80,12 +85,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="CurrentGunVisual" type="VBoxContainer" parent="CurrentGun/CurrentGun" unique_id=1928396135]
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 2
 metadata/_edit_lock_ = true
+
+[node name="Index" type="RichTextLabel" parent="CurrentGun/CurrentGun/CurrentGunVisual" unique_id=219206760]
+clip_contents = false
+custom_minimum_size = Vector2(25, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+text = "99"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CurrentGun/CurrentGun/CurrentGunVisual" unique_id=103886649]
 layout_mode = 2
@@ -99,11 +121,11 @@ stretch_mode = 4
 
 [node name="CurrentGunText" type="RichTextLabel" parent="CurrentGun/CurrentGun/CurrentGunVisual" unique_id=867538073]
 clip_contents = false
-custom_minimum_size = Vector2(10, 45)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 24
 autowrap_trim_flags = 0
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfk44qdlpov30" path="res://GameElements/Guns/Kalashnikov/kalashnikov.tscn" id="4_j8eab"]
 [ext_resource type="PackedScene" uid="uid://bpyv608bp0xcc" path="res://Components/VelocityComponent/velocity_component.tscn" id="4_owvpp"]
 [ext_resource type="PackedScene" uid="uid://vsyffl88ida1" path="res://Components/WeaponSwitchComponent/weapon_switch_component.tscn" id="5_df4xk"]
+[ext_resource type="PackedScene" uid="uid://cmaac5pb20c3i" path="res://GameElements/Guns/generic_gun.tscn" id="5_u4qbg"]
 [ext_resource type="PackedScene" uid="uid://bn2ijtvmd13jo" path="res://Components/HealthComponent/health_component.tscn" id="5_xr8lj"]
 [ext_resource type="PackedScene" uid="uid://jihcyjjgfuek" path="res://Components/StateMachineComponent/state_machine_component.tscn" id="6_r8fok"]
 [ext_resource type="Script" uid="uid://b4fa8gasxsbc8" path="res://Components/StateMachineComponent/PlayerMove/PlayerMove.cs" id="7_owvpp"]
@@ -58,6 +59,8 @@ metadata/_edit_lock_ = true
 position = Vector2(22, -3)
 
 [node name="Kalashnikov" parent="WeaponStorage" unique_id=2074541227 instance=ExtResource("4_j8eab")]
+
+[node name="GenericGun" parent="WeaponStorage" unique_id=1857061639 instance=ExtResource("5_u4qbg")]
 
 [node name="GunPivot" type="Node2D" parent="." unique_id=1903963738]
 metadata/_edit_lock_ = true
