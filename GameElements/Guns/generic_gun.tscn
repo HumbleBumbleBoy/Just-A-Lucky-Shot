@@ -37,3 +37,7 @@ MaxSpreadDegrees = 60.0
 
 [node name="GunDamageComponent" parent="." unique_id=843077692 instance=ExtResource("4_tb657")]
 BaseDamage = 5.0
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=2009856988]
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="." unique_id=1444051869]

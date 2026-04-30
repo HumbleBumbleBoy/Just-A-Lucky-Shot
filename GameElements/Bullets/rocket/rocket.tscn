@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b130axcqfotxx"]
+
+[ext_resource type="Script" uid="uid://djrklufxcxvy6" path="res://GameElements/Bullets/rocket/Rocket.cs" id="1_q88pu"]
+[ext_resource type="PackedScene" uid="uid://behxnryxfaqx8" path="res://Components/BulletVelocityComponent/bullet_velocity_component.tscn" id="1_vvw54"]
+[ext_resource type="PackedScene" uid="uid://dwaikwu7cc5je" path="res://Components/BulletDamageComponent/bullet_damage_component.tscn" id="2_q88pu"]
+[ext_resource type="Texture2D" uid="uid://djavxu7qfuc38" path="res://GameElements/Bullets/rocket/dfasdasdasd-removebg-preview.png" id="2_w1rho"]
+[ext_resource type="PackedScene" uid="uid://lxlulumene8o" path="res://Components/BulletSizeComponent/bullet_size_component.tscn" id="3_w1rho"]
+[ext_resource type="PackedScene" uid="uid://c7iskh0gyqamb" path="res://Components/HomingComponent/homing_component.tscn" id="4_n2u45"]
+[ext_resource type="PackedScene" uid="uid://q8ttxtwq16yy" path="res://Components/BulletBounceComponent/bullet_bounce_component.tscn" id="5_hdgtd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lurww"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1rho"]
+radius = 156.0032
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px47d"]
+radius = 14.0
+height = 98.0
+
+[node name="Rocket" type="CharacterBody2D" unique_id=622731857]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_q88pu")
+BulletName = "Rocket"
+BulletDescription = "Goes Boom"
+Rarity = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=602069201]
+position = Vector2(34, -3)
+scale = Vector2(0.66758245, 0.66758245)
+texture = ExtResource("2_w1rho")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=399779474]
+position = Vector2(14, 0)
+shape = SubResource("CircleShape2D_lurww")
+
+[node name="Explosion" type="Area2D" parent="." unique_id=388462131]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion" unique_id=926225309]
+shape = SubResource("CircleShape2D_w1rho")
+
+[node name="DetectionBox" type="Area2D" parent="." unique_id=1182742847]
+collision_layer = 4
+collision_mask = 11
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox" unique_id=365031353]
+rotation = 4.712389
+shape = SubResource("CapsuleShape2D_px47d")
+metadata/_edit_lock_ = true
+
+[node name="BulletVelocityComponent" parent="." unique_id=598265744 instance=ExtResource("1_vvw54")]
+MaxSpeed = 20.0
+AccelerationCoefficient = 80.0
+GravitationalPull = 6.0
+
+[node name="BulletDamageComponent" parent="." unique_id=2036267882 instance=ExtResource("2_q88pu")]
+DamageMultiplier = 2.0
+
+[node name="BulletSizeComponent" parent="." unique_id=233695172 instance=ExtResource("3_w1rho")]
+MinBulletSize = 0.5
+BulletSize = 1.0
+MaxBulletSize = 2.0
+
+[node name="HomingComponent" parent="." unique_id=43176513 instance=ExtResource("4_n2u45")]
+
+[node name="BulletBounceComponent" parent="." unique_id=48163582 instance=ExtResource("5_hdgtd")]
+
+[node name="Timer" type="Timer" parent="." unique_id=2076651585]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Explosion" to="." method="OnExplosionAreaEntered"]
+[connection signal="area_entered" from="DetectionBox" to="." method="OnDetectionBoxAreaEntered"]
+[connection signal="body_entered" from="DetectionBox" to="." method="OnDetectionBoxBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeoutEnd"]
